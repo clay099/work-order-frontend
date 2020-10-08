@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, shallowEqual } from "react-redux";
 import useToggle from "../../hooks/useToggle";
 import { Snackbar } from "@material-ui/core";
@@ -6,7 +6,6 @@ import Alert from "@material-ui/lab/Alert";
 
 const Feedback = () => {
 	let { message, severity } = useSelector((st) => {
-		console.log(st);
 		if (st.feedback.error) {
 			return { message: st.feedback.error, severity: "error" };
 		} else if (st.feedback.error) {
@@ -38,7 +37,7 @@ const Feedback = () => {
 		if (message) {
 			handleOpenToggle();
 		}
-	}, [message]);
+	}, [message, handleOpenToggle]);
 
 	return !message ? null : (
 		<div>

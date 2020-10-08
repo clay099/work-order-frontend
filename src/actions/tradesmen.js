@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, LOGIN_ERROR } from "./types";
+import { LOGIN, LOGIN_ERROR } from "./types";
 import apiRequest from "../apiRequest/apiRequest";
 
 export function loginTradesmenWithAPI({ email, password }) {

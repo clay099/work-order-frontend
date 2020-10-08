@@ -80,6 +80,11 @@ export default function MenuAppBar() {
 					</Typography>
 					{auth && (
 						<div>
+							{userType === "user" ? (
+								<Button color="inherit" onClick={newProject}>
+									Create New Project
+								</Button>
+							) : null}
 							<IconButton
 								aria-label="account of current user"
 								aria-controls="menu-appbar"
@@ -89,11 +94,6 @@ export default function MenuAppBar() {
 							>
 								<AccountCircle />
 							</IconButton>
-							{userType === "user" ? (
-								<Button color="inherit" onClick={newProject}>
-									Create New Project
-								</Button>
-							) : null}
 							<Menu
 								id="menu-appbar"
 								anchorEl={anchorEl}

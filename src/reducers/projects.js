@@ -1,9 +1,4 @@
-import {
-	FETCH_PROJECTS,
-	LOGOUT,
-	NEW_PROJECT,
-	NEW_PROJECT_ERROR,
-} from "../actions/types";
+import { FETCH_PROJECTS, LOGOUT, NEW_PROJECT } from "../actions/types";
 
 export default function rootReducer(state = {}, action) {
 	switch (action.type) {

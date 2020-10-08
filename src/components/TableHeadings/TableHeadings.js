@@ -6,7 +6,7 @@ const TableHeadings = ({ headings }) => {
 		<TableHead>
 			<TableRow>
 				{headings.map((heading) => (
-					<TableCell>{heading}</TableCell>
+					<TableCell key={heading}>{heading}</TableCell>
 				))}
 			</TableRow>
 		</TableHead>

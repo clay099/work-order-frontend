@@ -15,6 +15,7 @@ const Dashboard = () => {
 		<Redirect to="/" />
 	) : (
 		<div>
+			{userType === "tradesmen" ? "apply for projects goes here" : null}
 			<Projects />
 		</div>
 	);

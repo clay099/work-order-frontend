@@ -25,7 +25,7 @@ const Projects = () => {
 				getProjects();
 			}
 		},
-		[dispatch, isLoading]
+		[dispatch, isLoading, token]
 	);
 
 	if (isLoading) return <b>Loading</b>;

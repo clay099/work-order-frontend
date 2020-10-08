@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Typography, Grid, Button, Dialog } from "@material-ui/core";
+import React from "react";
+import { Typography } from "@material-ui/core";
 import "./HomeHeading.css";
 import LoginButtons from "../LoginButtons/LoginButtons";
 
