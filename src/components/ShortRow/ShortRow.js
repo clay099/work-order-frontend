@@ -8,22 +8,22 @@ const ShortRow = ({ project }) => {
 			{project.description ? (
 				<TableCell>{project.description}</TableCell>
 			) : (
-				<TableCell>no data</TableCell>
+				<TableCell>not available</TableCell>
 			)}
 			{project.street_address ? (
 				<TableCell>{project.street_address}</TableCell>
 			) : (
-				<TableCell>no data</TableCell>
+				<TableCell>not available</TableCell>
 			)}
 			{project.address_city ? (
 				<TableCell>{project.address_city}</TableCell>
 			) : (
-				<TableCell>no data</TableCell>
+				<TableCell>not available</TableCell>
 			)}
 			{project.created_at ? (
 				<TableCell>{dateHelper(project.created_at)}</TableCell>
 			) : (
-				<TableCell>no data</TableCell>
+				<TableCell>not available</TableCell>
 			)}
 			{project.status ? (
 				<TableCell>{project.status}</TableCell>

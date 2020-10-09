@@ -47,6 +47,7 @@ const AuctionStageProjects = () => {
 		"Status",
 		"Bid",
 	];
+
 	return (
 		<>
 			<DisplayTable

@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { getProjectDetailsFromAPI } from "../../actions/projects";
 import DisplayTable from "../DisplayTable/DisplayTable";
+import UserProjectButtons from "../UserProjectButtons/UserProjectButtons";
 
 const useStyles = makeStyles((theme) => ({
 	advancedProjectDetails: {
@@ -16,9 +17,10 @@ const AdvancedProjectDetails = () => {
 	const classes = useStyles();
 	const { id } = useParams();
 	// gets token from store
-	const { token, project } = useSelector(
+	const { token, userType, project } = useSelector(
 		(st) => ({
 			token: st.login.token,
+			userType: st.login.user_type,
 			project: st.projects.projectDetails,
 		}),
 		shallowEqual
@@ -70,10 +72,8 @@ const AdvancedProjectDetails = () => {
 				tableTitle="Project Details"
 			/>
 			<div>update project button</div>
-			<div>
-				update delete project button - note can only do if state is
-				still auction
-			</div>
+			{userType === "user" ? <UserProjectButtons /> : null}
+
 			<div>reviews table</div>
 			<div>add reviews button</div>
 		</div>

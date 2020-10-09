@@ -1,16 +1,16 @@
 import React from "react";
 import { TableBody, TableRow, Button, Icon } from "@material-ui/core/";
-import { Send } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 import ShortRow from "../ShortRow/ShortRow";
 import RemainderRow from "../RemainderRow/RemainderRow";
-import useToggle from "../../hooks/useToggle";
 import Bid from "../Bid/Bid";
 
 const TableContents = ({ bodyData, tableType }) => {
 	const history = useHistory();
 	const advancedProjectDetails = (id) => {
-		history.push(`/project/${id}`);
+		if (tableType !== "auction") {
+			history.push(`/project/${id}`);
+		}
 	};
 
 	return (
