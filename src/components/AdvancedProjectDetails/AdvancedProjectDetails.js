@@ -72,7 +72,13 @@ const AdvancedProjectDetails = () => {
 				tableTitle="Project Details"
 			/>
 			<div>update project button</div>
-			{userType === "user" ? <UserProjectButtons /> : null}
+			{userType === "user" ? (
+				<UserProjectButtons
+					status={project.status}
+					id={project.id}
+					token={token}
+				/>
+			) : null}
 
 			<div>reviews table</div>
 			<div>add reviews button</div>

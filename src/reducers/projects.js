@@ -28,11 +28,14 @@ export default function rootReducer(state = {}, action) {
 			return { ...state, auctionProjectList: action.projects };
 
 		case DELETE_PROJECTS:
-			let projects = { ...state };
+			let projects = {
+				...state,
+				projectList: state.projectList.filter(
+					(project) => project.id !== action.projectId
+				),
+			};
 			delete projects.projectDetails;
-			projects.projectList.filter(
-				(project) => project.id !== action.projectId
-			);
+
 			return projects;
 
 		default:

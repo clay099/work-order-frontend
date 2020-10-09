@@ -1,10 +1,12 @@
 import React from "react";
 import useToggle from "../../hooks/useToggle";
-import { Dialog, DialogTitle, Button } from "@material-ui/core/";
-import { useSelector } from "react-redux";
+import { Dialog, DialogTitle, Button, DialogActions } from "@material-ui/core/";
+import { useSelector, useDispatch } from "react-redux";
 import UpdateProject from "../UpdateProject/UpdateProject";
+import { deleteProjectFromAPI } from "../../actions/projects";
+import { useHistory } from "react-router-dom";
 
-const UserProjectButtons = () => {
+const UserProjectButtons = ({ status, id, token }) => {
 	const {
 		setTrue: handleOpenUpdate,
 		setFalse: handleCloseUpdate,
@@ -17,10 +19,18 @@ const UserProjectButtons = () => {
 		toggle: openDelete,
 	} = useToggle(false);
 
-	const { status, token } = useSelector((st) => ({
-		status: st.projects.projectDetails.status,
-		token: st.login.token,
-	}));
+	const dispatch = useDispatch();
+	let history = useHistory();
+
+	const handleDelete = () => {
+		dispatch(
+			deleteProjectFromAPI({
+				token,
+				projectId: id,
+			})
+		);
+		history.push(`/user`);
+	};
 
 	return (
 		<>
@@ -46,6 +56,22 @@ const UserProjectButtons = () => {
 						<DialogTitle id="delete-project">
 							Are You Suer You Want To Delete This Project?
 						</DialogTitle>
+						<DialogActions>
+							<Button
+								variant="outlined"
+								color="secondary"
+								onClick={handleCloseDelete}
+							>
+								Cancel
+							</Button>
+							<Button
+								variant="contained"
+								color="secondary"
+								onClick={handleDelete}
+							>
+								Delete Project
+							</Button>
+						</DialogActions>
 					</Dialog>
 				</>
 			) : null}
