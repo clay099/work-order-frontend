@@ -71,7 +71,6 @@ const AdvancedProjectDetails = () => {
 				headingList={headingList}
 				tableTitle="Project Details"
 			/>
-			<div>update project button</div>
 			{userType === "user" ? (
 				<UserProjectButtons
 					status={project.status}
