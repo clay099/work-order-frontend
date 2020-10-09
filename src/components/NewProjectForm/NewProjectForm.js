@@ -3,14 +3,8 @@ import useFields from "../../hooks/useFields";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-	Button,
-	TextField,
-	Grid,
-	Container,
-	CssBaseline,
-} from "@material-ui/core";
-import FormAddressItems from "../FormAddressItems/FormAddressItems";
+import { Button, Container, CssBaseline } from "@material-ui/core";
+import BasicProjectForm from "../BasicProjectForm/BasicProjectForm";
 import { createNewProjectWithAPI } from "../../actions/projects";
 
 const useStyles = makeStyles((theme) => ({
@@ -46,7 +40,6 @@ const NewProjectForm = ({ token }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// fix below lines
 		let resp = await dispatch(
 			createNewProjectWithAPI({
 				description: formData.description,
@@ -73,25 +66,10 @@ const NewProjectForm = ({ token }) => {
 				<div className={classes.paper}>
 					<CssBaseline />
 					<form className={classes.form} noValidate>
-						<Grid container spacing={2}>
-							<Grid item xs={12}>
-								<TextField
-									name="description"
-									variant="outlined"
-									required
-									fullWidth
-									id="description"
-									label="Description"
-									autoFocus
-									onChange={handleChange}
-									value={formData.description}
-								/>
-							</Grid>
-							<FormAddressItems
-								formData={formData}
-								handleChange={handleChange}
-							/>
-						</Grid>
+						<BasicProjectForm
+							formData={formData}
+							handleChange={handleChange}
+						/>
 						<Button
 							type="submit"
 							fullWidth

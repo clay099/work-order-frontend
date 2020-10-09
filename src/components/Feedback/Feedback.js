@@ -37,7 +37,7 @@ const Feedback = () => {
 		if (message) {
 			handleOpenToggle();
 		}
-	}, [message, handleOpenToggle]);
+	}, [message]);
 
 	return !message ? null : (
 		<div>

@@ -1,7 +1,7 @@
 import {
 	LOGIN,
 	LOGIN_ERROR,
-	NEW_PROJECT_ERROR,
+	PROJECT_ERROR,
 	NEW_PROJECT,
 } from "../actions/types";
 
@@ -15,7 +15,7 @@ export default function rootReducer(state = {}, action) {
 		case LOGIN_ERROR:
 			return { error: action.error_message };
 
-		case NEW_PROJECT_ERROR:
+		case PROJECT_ERROR:
 			return { error: action.error_message };
 
 		case NEW_PROJECT:

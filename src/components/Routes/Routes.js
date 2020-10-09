@@ -4,6 +4,7 @@ import HomePage from "../HomePage/HomePage";
 import Dashboard from "../Dashboard/Dashboard";
 import Register from "../Register/Register";
 import NewProject from "../NewProject/NewProject";
+import AdvancedProjectDetails from "../AdvancedProjectDetails/AdvancedProjectDetails";
 
 /** Application Routes
  *
@@ -13,6 +14,7 @@ import NewProject from "../NewProject/NewProject";
  *    - Tradesmen Dashboard
  *    - Register
  *    - NewProject
+ *    - AdvancedProjectDetails
  */
 
 function Routes() {
@@ -32,6 +34,9 @@ function Routes() {
 			</Route>
 			<Route exact path="/user/newproject">
 				<NewProject />
+			</Route>
+			<Route exact path="/project/:id">
+				<AdvancedProjectDetails />
 			</Route>
 			<Redirect to="/" />
 		</Switch>

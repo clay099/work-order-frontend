@@ -63,7 +63,11 @@ export default function MenuAppBar() {
 	};
 
 	const newProject = () => {
-		history.push("user/newproject");
+		history.push("/user/newproject");
+	};
+
+	const dashboard = () => {
+		history.push(`/${userType}`);
 	};
 
 	return (
@@ -85,6 +89,9 @@ export default function MenuAppBar() {
 									Create New Project
 								</Button>
 							) : null}
+							<Button color="inherit" onClick={dashboard}>
+								{userType} Dashboard
+							</Button>
 							<IconButton
 								aria-label="account of current user"
 								aria-controls="menu-appbar"

@@ -27,7 +27,7 @@ export default function SignUp({ userType }) {
 		phone: "",
 		password: "",
 	};
-	if (userType === "tradesmen") {
+	if (userType === "user") {
 		INITIALSTATE.streetAddress = "";
 		INITIALSTATE.zip = "";
 		INITIALSTATE.city = "";

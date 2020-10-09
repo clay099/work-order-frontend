@@ -1,6 +1,5 @@
 import React from "react";
-import UserRegister from "../UserRegister/UserRegister";
-import TradesmenRegister from "../TradesmenRegister/TradesmenRegister";
+import RegisterForm from "../RegisterForm/RegisterForm";
 import {
 	CssBaseline,
 	Container,
@@ -77,7 +76,11 @@ const Register = () => {
 						</Button>
 					</Grid>
 				</Grid>
-				{toggle ? <UserRegister /> : <TradesmenRegister />}
+				{toggle ? (
+					<RegisterForm userType="user" />
+				) : (
+					<RegisterForm userType="tradesmen" />
+				)}
 			</div>
 		</Container>
 	);

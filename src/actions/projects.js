@@ -1,4 +1,10 @@
-import { FETCH_PROJECTS, NEW_PROJECT, NEW_PROJECT_ERROR } from "./types";
+import {
+	FETCH_PROJECTS,
+	NEW_PROJECT,
+	PROJECT_ERROR,
+	PROJECT_DETAILS,
+	FETCH_AUCTION_PROJECTS,
+} from "./types";
 import apiRequest from "../apiRequest/apiRequest";
 
 export function getProjectsFromAPI({ token }) {
@@ -44,7 +50,7 @@ export function createNewProjectWithAPI({
 		);
 		// if no resp.project an error occurred
 		if (!resp.project) {
-			return dispatch(newProjectError(resp.data.error.message));
+			return dispatch(projectError(resp.data.error.message));
 		}
 		return dispatch(newProject(resp.project));
 	};
@@ -57,9 +63,53 @@ function newProject(project) {
 	};
 }
 
-function newProjectError(error_message) {
+function projectError(error_message) {
 	return {
-		type: NEW_PROJECT_ERROR,
+		type: PROJECT_ERROR,
 		error_message,
+	};
+}
+
+export function getProjectDetailsFromAPI({ token, projectId }) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`projects/${projectId}`,
+			{
+				_token: token,
+			},
+			"get"
+		);
+		// if no resp.project an error occurred
+		if (!resp.project) {
+			return dispatch(projectError(resp.data.error.message));
+		}
+		return dispatch(projectDetails(resp.project));
+	};
+}
+
+function projectDetails(project) {
+	return {
+		type: PROJECT_DETAILS,
+		project,
+	};
+}
+
+export function getAuctionProjectsFromAPI({ token }) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`projects/new`,
+			{
+				_token: token,
+			},
+			"get"
+		);
+		return dispatch(getAuctionProjects(resp.projects));
+	};
+}
+
+function getAuctionProjects(projects) {
+	return {
+		type: FETCH_AUCTION_PROJECTS,
+		projects,
 	};
 }
