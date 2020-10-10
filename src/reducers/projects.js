@@ -4,7 +4,8 @@ import {
 	NEW_PROJECT,
 	PROJECT_DETAILS,
 	FETCH_AUCTION_PROJECTS,
-	DELETE_PROJECTS,
+	DELETE_PROJECT,
+	UPDATE_PROJECT,
 } from "../actions/types";
 
 export default function rootReducer(state = {}, action) {
@@ -27,7 +28,7 @@ export default function rootReducer(state = {}, action) {
 		case FETCH_AUCTION_PROJECTS:
 			return { ...state, auctionProjectList: action.projects };
 
-		case DELETE_PROJECTS:
+		case DELETE_PROJECT:
 			let projects = {
 				...state,
 				projectList: state.projectList.filter(
@@ -37,6 +38,17 @@ export default function rootReducer(state = {}, action) {
 			delete projects.projectDetails;
 
 			return projects;
+
+		case UPDATE_PROJECT:
+			let PL = state.projectList.filter(
+				(project) => project.id !== action.project.id
+			);
+
+			return {
+				...state,
+				projectDetails: action.project,
+				projectList: [...PL, action.project],
+			};
 
 		default:
 			return state;

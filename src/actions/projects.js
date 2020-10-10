@@ -4,7 +4,8 @@ import {
 	PROJECT_ERROR,
 	PROJECT_DETAILS,
 	FETCH_AUCTION_PROJECTS,
-	DELETE_PROJECTS,
+	DELETE_PROJECT,
+	UPDATE_PROJECT,
 } from "./types";
 import apiRequest from "../apiRequest/apiRequest";
 
@@ -132,7 +133,29 @@ export function deleteProjectFromAPI({ token, projectId }) {
 
 function deleteProject(projectId) {
 	return {
-		type: DELETE_PROJECTS,
+		type: DELETE_PROJECT,
 		projectId,
+	};
+}
+
+export function markProjectAsCompleteWithAPI({ token, projectId }) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`projects/${projectId}`,
+			{ _token: token, status: "completed" },
+			"patch"
+		);
+		// if no resp.project an error occurred
+		if (!resp.project) {
+			return dispatch(projectError(resp.data.error.message));
+		}
+		return dispatch(updateProject(resp.project));
+	};
+}
+
+function updateProject(project) {
+	return {
+		type: UPDATE_PROJECT,
+		project,
 	};
 }
