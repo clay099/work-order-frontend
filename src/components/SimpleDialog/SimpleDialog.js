@@ -1,12 +1,5 @@
 import React from "react";
-import {
-	Dialog,
-	DialogTitle,
-	Button,
-	DialogActions,
-	Grid,
-	makeStyles,
-} from "@material-ui/core/";
+import { Dialog, DialogTitle, Button, DialogActions } from "@material-ui/core/";
 
 const SimpleDialog = ({
 	handleClose,

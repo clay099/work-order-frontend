@@ -1,4 +1,4 @@
-import { LOGIN, LOGIN_ERROR } from "./types";
+import { LOGIN, LOGIN_ERROR, USER_DETAILS } from "./types";
 import apiRequest from "../apiRequest/apiRequest";
 
 export function loginTradesmenWithAPI({ email, password }) {
@@ -15,16 +15,19 @@ export function loginTradesmenWithAPI({ email, password }) {
 		if (resp.status === 404) {
 			return dispatch(loginError(resp.data.error.message));
 		}
-		return dispatch(loginTradesmen(resp.token, resp.user_type, resp.email));
+		return dispatch(
+			loginTradesmen(resp.token, resp.user_type, resp.email, resp.id)
+		);
 	};
 }
 
-function loginTradesmen(token, user_type, email) {
+function loginTradesmen(token, user_type, email, id) {
 	return {
 		type: LOGIN,
 		token,
 		user_type,
 		email,
+		id,
 	};
 }
 
@@ -58,15 +61,41 @@ export function signupTradesmenWithAPI({
 		if (!resp.token) {
 			return dispatch(loginError(resp.data.error.message));
 		}
-		return dispatch(signupTradesmen(resp.token, "user", email));
+		return dispatch(signupTradesmen(resp.token, "user", email, resp.id));
 	};
 }
 
-function signupTradesmen(token, user_type, email) {
+function signupTradesmen(token, user_type, email, id) {
 	return {
 		type: LOGIN,
 		token,
 		user_type,
 		email,
+		id,
+	};
+}
+
+export function getTradesmenProfileFromAPI({ token, id }) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`tradesmen/${id}`,
+			{
+				_token: token,
+			},
+			"get"
+		);
+		// user not found in DB
+		if (!resp.tradesman) {
+			return dispatch(loginError(resp.data.error.message));
+		}
+		console.log(resp);
+		return dispatch(tradesmenDetails(resp.tradesman));
+	};
+}
+
+function tradesmenDetails(details) {
+	return {
+		type: USER_DETAILS,
+		details,
 	};
 }

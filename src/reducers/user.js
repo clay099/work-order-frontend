@@ -1,14 +1,11 @@
-import { LOGIN, LOGOUT } from "../actions/types";
+import { LOGOUT, USER_DETAILS } from "../actions/types";
 
 export default function rootReducer(state = {}, action) {
 	switch (action.type) {
-		case LOGIN:
+		case USER_DETAILS:
 			return {
 				...state,
-				token: action.token,
-				user_type: action.user_type,
-				email: action.email,
-				id: action.id,
+				details: action.details,
 			};
 
 		case LOGOUT:

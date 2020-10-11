@@ -1,4 +1,4 @@
-import { LOGIN, LOGIN_ERROR } from "./types";
+import { LOGIN, LOGIN_ERROR, USER_DETAILS } from "./types";
 import apiRequest from "../apiRequest/apiRequest";
 
 export function loginUserWithAPI({ email, password }) {
@@ -15,16 +15,19 @@ export function loginUserWithAPI({ email, password }) {
 		if (resp.status === 404) {
 			return dispatch(loginError(resp.data.error.message));
 		}
-		return dispatch(loginUser(resp.token, resp.user_type, resp.email));
+		return dispatch(
+			loginUser(resp.token, resp.user_type, resp.email, resp.id)
+		);
 	};
 }
 
-function loginUser(token, user_type, email) {
+function loginUser(token, user_type, email, id) {
 	return {
 		type: LOGIN,
 		token,
 		user_type,
 		email,
+		id,
 	};
 }
 
@@ -66,15 +69,41 @@ export function signupUserWithAPI({
 		if (!resp.token) {
 			return dispatch(loginError(resp.data.error.message));
 		}
-		return dispatch(signupUser(resp.token, "user", email));
+		return dispatch(signupUser(resp.token, "user", email, resp.id));
 	};
 }
 
-function signupUser(token, user_type, email) {
+function signupUser(token, user_type, email, id) {
 	return {
 		type: LOGIN,
 		token,
 		user_type,
 		email,
+		id,
+	};
+}
+
+export function getUserProfileFromAPI({ token, id }) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`users/${id}`,
+			{
+				_token: token,
+			},
+			"get"
+		);
+		// user not found in DB
+		if (!resp.user) {
+			return dispatch(loginError(resp.data.error.message));
+		}
+		console.log(resp);
+		return dispatch(userDetails(resp.user));
+	};
+}
+
+function userDetails(details) {
+	return {
+		type: USER_DETAILS,
+		details,
 	};
 }

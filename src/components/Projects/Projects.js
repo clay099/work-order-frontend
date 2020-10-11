@@ -3,6 +3,7 @@ import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { getProjectsFromAPI } from "../../actions/projects";
 import DisplayTable from "../DisplayTable/DisplayTable";
 import { Typography } from "@material-ui/core";
+import Loading from "../Loading/Loading";
 
 const Projects = () => {
 	const { projects, token } = useSelector(
@@ -29,7 +30,7 @@ const Projects = () => {
 		[dispatch, isLoading, token]
 	);
 
-	if (isLoading) return <b>Loading</b>;
+	if (isLoading) return <Loading />;
 
 	if (!isLoading && projects.length === 0) {
 		return <Typography component="body1">Please add a post!</Typography>;

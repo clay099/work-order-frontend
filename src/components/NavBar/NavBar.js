@@ -32,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
 export default function MenuAppBar() {
 	const classes = useStyles();
 
-	const userType = useSelector((st) => st.login.user_type);
+	const { userType } = useSelector((st) => ({
+		userType: st.login.user_type,
+	}));
 
 	const [auth, setAuth] = useState(Boolean(userType));
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -68,6 +70,11 @@ export default function MenuAppBar() {
 
 	const dashboard = () => {
 		history.push(`/${userType}`);
+	};
+
+	const userProfile = () => {
+		handleClose();
+		history.push(`/${userType}/profile`);
 	};
 
 	return (
@@ -116,11 +123,8 @@ export default function MenuAppBar() {
 								open={open}
 								onClose={handleClose}
 							>
-								<MenuItem onClick={handleClose}>
+								<MenuItem onClick={userProfile}>
 									Profile
-								</MenuItem>
-								<MenuItem onClick={handleClose}>
-									My account
 								</MenuItem>
 								<MenuItem onClick={logout}>Logout</MenuItem>
 							</Menu>
