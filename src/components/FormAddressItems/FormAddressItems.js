@@ -1,7 +1,7 @@
 import React from "react";
 import { TextField, Grid } from "@material-ui/core";
 
-const FormAddressItems = ({ formData, handleChange }) => {
+const FormAddressItems = ({ formData, handleChange, disabled }) => {
 	return (
 		<>
 			<Grid item xs={12} sm={6}>
@@ -14,6 +14,7 @@ const FormAddressItems = ({ formData, handleChange }) => {
 					name="streetAddress"
 					onChange={handleChange}
 					value={formData.streetAddress}
+					disabled={disabled}
 				/>
 			</Grid>
 			<Grid item xs={12} sm={6}>
@@ -26,6 +27,7 @@ const FormAddressItems = ({ formData, handleChange }) => {
 					label="Zip Code"
 					onChange={handleChange}
 					value={formData.zip}
+					disabled={disabled}
 				/>
 			</Grid>
 			<Grid item xs={12} sm={6}>
@@ -38,6 +40,7 @@ const FormAddressItems = ({ formData, handleChange }) => {
 					label="City"
 					onChange={handleChange}
 					value={formData.city}
+					disabled={disabled}
 				/>
 			</Grid>
 			<Grid item xs={12} sm={6}>
@@ -50,6 +53,7 @@ const FormAddressItems = ({ formData, handleChange }) => {
 					label="Country"
 					onChange={handleChange}
 					value={formData.country}
+					disabled={disabled}
 				/>
 			</Grid>
 		</>

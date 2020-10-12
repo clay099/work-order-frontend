@@ -18,6 +18,9 @@ export default function UserDetailsForm({
 	handleSubmit,
 	formData,
 	handleChange,
+	disabled = false,
+	buttonText,
+	editButton = null,
 }) {
 	const classes = useStyles();
 
@@ -36,6 +39,7 @@ export default function UserDetailsForm({
 							autoFocus
 							onChange={handleChange}
 							value={formData.firstName}
+							disabled={disabled}
 						/>
 					</Grid>
 					<Grid item xs={12} sm={6}>
@@ -48,6 +52,7 @@ export default function UserDetailsForm({
 							name="lastName"
 							onChange={handleChange}
 							value={formData.lastName}
+							disabled={disabled}
 						/>
 					</Grid>
 					<Grid item xs={12} sm={6}>
@@ -60,6 +65,7 @@ export default function UserDetailsForm({
 							name="email"
 							onChange={handleChange}
 							value={formData.email}
+							disabled={disabled}
 						/>
 					</Grid>
 					<Grid item xs={12} sm={6}>
@@ -72,12 +78,14 @@ export default function UserDetailsForm({
 							name="phone"
 							onChange={handleChange}
 							value={formData.phone}
+							disabled={disabled}
 						/>
 					</Grid>
 					{userType === "user" ? (
 						<FormAddressItems
 							formData={formData}
 							handleChange={handleChange}
+							disabled={disabled}
 						/>
 					) : null}
 					<Grid item xs={12}>
@@ -91,20 +99,25 @@ export default function UserDetailsForm({
 							id="password"
 							onChange={handleChange}
 							value={formData.password}
+							disabled={disabled}
 						/>
 					</Grid>
 				</Grid>
-				<Button
-					type="submit"
-					fullWidth
-					variant="contained"
-					color="primary"
-					className={classes.submit}
-					onClick={handleSubmit}
-				>
-					Sign Up New {userType}
-				</Button>
+				{!disabled ? (
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						color="primary"
+						className={classes.submit}
+						onClick={handleSubmit}
+					>
+						{buttonText}
+					</Button>
+				) : null}
 			</form>
+			{/* needs to be outside from to prevent from submitting on click */}
+			{disabled ? editButton : null}
 		</div>
 	);
 }

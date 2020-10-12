@@ -10,3 +10,4 @@ export const UPDATE_PROJECT = "UPDATE_PROJECT";
 export const USER_DETAILS = "USER_DETAILS";
 export const UPDATE_BID = "UPDATE_BID";
 export const FETCH_ALL_BIDS = "FETCH_ALL_BIDS";
+export const UPDATE_PROFILE = "UPDATE_PROFILE";

@@ -17,7 +17,6 @@ const Bid = ({ projectId }) => {
 			// returns value if project does have a bid.
 			// note the user might not have placed a bid yet and result can still be undefined
 			bid = st.bids[projectId][st.login.id];
-			console.log("bid ", bid);
 		}
 
 		return {
@@ -28,7 +27,6 @@ const Bid = ({ projectId }) => {
 
 	const { toggle: disabled, setTrue, setFalse } = useToggle(Boolean(bid));
 
-	console.log("bid", bid);
 	const INITIALSTATE = { bid: bid || "" };
 	const { formData, handleChange } = useFields(INITIALSTATE);
 	const dispatch = useDispatch();

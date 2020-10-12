@@ -109,6 +109,8 @@ const Register = () => {
 		}
 	};
 
+	let userType = toggle ? "user" : "tradesmen";
+
 	return (
 		<Container component="main" maxWidth="xs">
 			<div className={classes.paper}>
@@ -141,21 +143,13 @@ const Register = () => {
 						</Button>
 					</Grid>
 				</Grid>
-				{toggle ? (
-					<UserDetailsForm
-						userType="user"
-						handleSubmit={handleSubmit}
-						formData={formData}
-						handleChange={handleChange}
-					/>
-				) : (
-					<UserDetailsForm
-						userType="tradesmen"
-						handleSubmit={handleSubmit}
-						formData={formData}
-						handleChange={handleChange}
-					/>
-				)}
+				<UserDetailsForm
+					handleSubmit={handleSubmit}
+					formData={formData}
+					handleChange={handleChange}
+					userType={userType}
+					buttonText={`Sign Up New ${userType}`}
+				/>
 			</div>
 		</Container>
 	);

@@ -28,6 +28,11 @@ const Feedback = () => {
 				message: `Bid Saved Successfully`,
 				severity: "success",
 			};
+		} else if (st.feedback.updatedEmail) {
+			return {
+				message: `Updated Profile Saved`,
+				severity: "success",
+			};
 		}
 		return { message: undefined, severity: undefined };
 	}, shallowEqual());

@@ -1,4 +1,4 @@
-import { LOGIN, ERROR, USER_DETAILS } from "./types";
+import { LOGIN, ERROR, USER_DETAILS, UPDATE_PROFILE } from "./types";
 import apiRequest from "../apiRequest/apiRequest";
 
 export function loginUserWithAPI({ email, password }) {
@@ -13,7 +13,7 @@ export function loginUserWithAPI({ email, password }) {
 		);
 		// user not found in DB
 		if (resp.status === 404) {
-			return dispatch(loginError(resp.data.error.message));
+			return dispatch(Error(resp.data.error.message));
 		}
 		return dispatch(
 			loginUser(resp.token, resp.user_type, resp.email, resp.id)
@@ -31,7 +31,7 @@ function loginUser(token, user_type, email, id) {
 	};
 }
 
-function loginError(error_message) {
+function Error(error_message) {
 	return {
 		type: ERROR,
 		error_message,
@@ -67,7 +67,7 @@ export function signupUserWithAPI({
 		);
 		// user not created
 		if (!resp.token) {
-			return dispatch(loginError(resp.data.error.message));
+			return dispatch(Error(resp.data.error.message));
 		}
 		return dispatch(signupUser(resp.token, "user", email, resp.id));
 	};
@@ -94,9 +94,8 @@ export function getUserProfileFromAPI({ token, id }) {
 		);
 		// user not found in DB
 		if (!resp.user) {
-			return dispatch(loginError(resp.data.error.message));
+			return dispatch(Error(resp.data.error.message));
 		}
-		console.log(resp);
 		return dispatch(userDetails(resp.user));
 	};
 }
@@ -105,5 +104,53 @@ function userDetails(details) {
 	return {
 		type: USER_DETAILS,
 		details,
+	};
+}
+
+export function updateUserWithAPI({
+	firstName,
+	lastName,
+	email,
+	phone,
+	password,
+	streetAddress,
+	zip,
+	city,
+	country,
+	id,
+	token,
+}) {
+	return async function (dispatch) {
+		debugger;
+		const resp = await apiRequest.request(
+			`users/${id}`,
+			{
+				first_name: firstName,
+				last_name: lastName,
+				email,
+				phone,
+				password,
+				street_address: streetAddress,
+				address_zip: zip,
+				address_city: city,
+				address_country: country,
+				_token: token,
+			},
+			"patch"
+		);
+		// user update not successful
+		if (!resp.token) {
+			return dispatch(Error(resp.data.error.message));
+		}
+		return dispatch(updateUser(resp.user, resp.token, "user"));
+	};
+}
+
+function updateUser(details, token, user_type) {
+	return {
+		type: UPDATE_PROFILE,
+		details,
+		token,
+		user_type,
 	};
 }
