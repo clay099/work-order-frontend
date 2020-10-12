@@ -1,19 +1,51 @@
 import React from "react";
 import useFields from "../../hooks/useFields";
 import { TextField, Button, TableCell } from "@material-ui/core";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Send } from "@material-ui/icons/";
+import { submitNewBidToAPI, updateBidWithAPI } from "../../actions/bids";
+import useToggle from "../../hooks/useToggle";
 
-const Bid = () => {
-	const INITIALSTATE = { bid: "" };
-	const { formData, handleChange, resetFormData } = useFields(INITIALSTATE);
+const Bid = ({ projectId }) => {
+	const { token, bid } = useSelector((st) => {
+		let bid;
+		// to avoid typeError checks if the projectId has a bid attached
+		if (!st.bids[projectId]) {
+			// returns undefined if no bid for projectId
+			bid = undefined;
+		} else {
+			// returns value if project does have a bid.
+			// note the user might not have placed a bid yet and result can still be undefined
+			bid = st.bids[projectId][st.login.id];
+			console.log("bid ", bid);
+		}
 
+		return {
+			token: st.login.token,
+			bid,
+		};
+	}, shallowEqual);
+
+	const { toggle: disabled, setTrue, setFalse } = useToggle(Boolean(bid));
+
+	console.log("bid", bid);
+	const INITIALSTATE = { bid: bid || "" };
+	const { formData, handleChange } = useFields(INITIALSTATE);
 	const dispatch = useDispatch();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		// Add submit logic
-		// need to add route to backend
+		if (!bid) {
+			await dispatch(
+				submitNewBidToAPI({ token, projectId, bid: +formData.bid })
+			);
+		} else {
+			await dispatch(
+				updateBidWithAPI({ token, projectId, bid: +formData.bid })
+			);
+		}
+		setTrue();
 	};
 
 	return (
@@ -29,19 +61,34 @@ const Bid = () => {
 					onChange={handleChange}
 					value={formData.bid}
 					size="small"
+					disabled={disabled}
 				></TextField>
 			</TableCell>
 			<TableCell>
-				<Button
-					type="submit"
-					size="small"
-					variant="contained"
-					color="primary"
-					endIcon={<Send />}
-					onClick={handleSubmit}
-				>
-					Place Bid
-				</Button>
+				{!disabled ? (
+					<Button
+						type="submit"
+						size="small"
+						variant="contained"
+						color="primary"
+						endIcon={<Send />}
+						onClick={handleSubmit}
+					>
+						{bid ? "Update " : "Place "}
+						Bid
+					</Button>
+				) : (
+					<Button
+						type="submit"
+						size="small"
+						variant="outlined"
+						color="primary"
+						endIcon={<Send />}
+						onClick={setFalse}
+					>
+						Edit Bid
+					</Button>
+				)}
 			</TableCell>
 		</>
 	);

@@ -1,7 +1,7 @@
 import {
 	FETCH_PROJECTS,
 	NEW_PROJECT,
-	PROJECT_ERROR,
+	ERROR,
 	PROJECT_DETAILS,
 	FETCH_AUCTION_PROJECTS,
 	DELETE_PROJECT,
@@ -67,7 +67,7 @@ function newProject(project) {
 
 function projectError(error_message) {
 	return {
-		type: PROJECT_ERROR,
+		type: ERROR,
 		error_message,
 	};
 }

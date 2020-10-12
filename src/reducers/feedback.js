@@ -1,9 +1,4 @@
-import {
-	LOGIN,
-	LOGIN_ERROR,
-	PROJECT_ERROR,
-	NEW_PROJECT,
-} from "../actions/types";
+import { LOGIN, ERROR, NEW_PROJECT, UPDATE_BID } from "../actions/types";
 
 export default function rootReducer(state = {}, action) {
 	switch (action.type) {
@@ -12,14 +7,17 @@ export default function rootReducer(state = {}, action) {
 				email: action.email,
 			};
 
-		case LOGIN_ERROR:
+		case ERROR:
 			return { error: action.error_message };
 
-		case PROJECT_ERROR:
+		case ERROR:
 			return { error: action.error_message };
 
 		case NEW_PROJECT:
 			return { newProject: action.project };
+
+		case UPDATE_BID:
+			return { bid: action.bidData };
 
 		default:
 			return state;

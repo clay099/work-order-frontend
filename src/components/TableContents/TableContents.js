@@ -24,7 +24,9 @@ const TableContents = ({ bodyData, tableType }) => {
 					{tableType === "full" ? (
 						<RemainderRow project={project} />
 					) : null}
-					{tableType === "auction" ? <Bid /> : null}
+					{tableType === "auction" ? (
+						<Bid projectId={project.id} />
+					) : null}
 				</TableRow>
 			))}
 		</TableBody>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { getAuctionProjectsFromAPI } from "../../actions/projects";
+import { getBidsFromAPI } from "../../actions/bids";
 import DisplayTable from "../DisplayTable/DisplayTable";
 import { Typography } from "@material-ui/core";
 
@@ -18,7 +19,10 @@ const AuctionStageProjects = () => {
 	useEffect(
 		function () {
 			async function getProjects() {
-				await dispatch(getAuctionProjectsFromAPI({ token }));
+				Promise.all([
+					await dispatch(getAuctionProjectsFromAPI({ token })),
+					await dispatch(getBidsFromAPI({ token })),
+				]);
 				setIsLoading(false);
 			}
 

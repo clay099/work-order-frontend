@@ -23,6 +23,11 @@ const Feedback = () => {
 				message: `Welcome ${st.feedback.email}`,
 				severity: "success",
 			};
+		} else if (st.feedback.bid) {
+			return {
+				message: `Bid Saved Successfully`,
+				severity: "success",
+			};
 		}
 		return { message: undefined, severity: undefined };
 	}, shallowEqual());

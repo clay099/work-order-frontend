@@ -1,4 +1,4 @@
-import { LOGIN, LOGIN_ERROR, USER_DETAILS } from "./types";
+import { LOGIN, ERROR, USER_DETAILS } from "./types";
 import apiRequest from "../apiRequest/apiRequest";
 
 export function loginUserWithAPI({ email, password }) {
@@ -33,7 +33,7 @@ function loginUser(token, user_type, email, id) {
 
 function loginError(error_message) {
 	return {
-		type: LOGIN_ERROR,
+		type: ERROR,
 		error_message,
 	};
 }
