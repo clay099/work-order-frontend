@@ -11,6 +11,11 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useToggle from "../../hooks/useToggle";
+import useFields from "../../hooks/useFields";
+import { signupUserWithAPI } from "../../actions/user";
+import { signupTradesmenWithAPI } from "../../actions/tradesmen";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -43,6 +48,66 @@ const Register = () => {
 		userVariant = "outlined";
 		tradesmenVariant = "contained";
 	}
+
+	let INITIALSTATE = {
+		firstName: "",
+		lastName: "",
+		email: "",
+		phone: "",
+		password: "",
+	};
+	if (toggle) {
+		INITIALSTATE.streetAddress = "";
+		INITIALSTATE.zip = "";
+		INITIALSTATE.city = "";
+		INITIALSTATE.country = "";
+	}
+
+	const { formData, handleChange, resetFormData } = useFields(INITIALSTATE);
+
+	const dispatch = useDispatch();
+	const history = useHistory();
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		let resp;
+		if (toggle) {
+			resp = await dispatch(
+				signupUserWithAPI({
+					firstName: formData.firstName,
+					lastName: formData.lastName,
+					email: formData.email,
+					password: formData.password,
+					phone: +formData.phone,
+					streetAddress: formData.streetAddress,
+					zip: +formData.zip,
+					city: formData.city,
+					country: formData.country,
+				})
+			);
+		} else {
+			resp = await dispatch(
+				signupTradesmenWithAPI({
+					firstName: formData.firstName,
+					lastName: formData.lastName,
+					email: formData.email,
+					password: formData.password,
+					phone: +formData.phone,
+				})
+			);
+		}
+		if (resp.type === "LOGIN_ERROR") {
+			// could not create new user/tradesmen. return don't redirect, snackbar should provide user feedback
+			return;
+		}
+
+		resetFormData();
+		if (toggle) {
+			history.push(`/user`);
+		} else {
+			history.push(`/tradesmen`);
+		}
+	};
 
 	return (
 		<Container component="main" maxWidth="xs">
@@ -77,9 +142,19 @@ const Register = () => {
 					</Grid>
 				</Grid>
 				{toggle ? (
-					<RegisterForm userType="user" />
+					<RegisterForm
+						userType="user"
+						handleSubmit={handleSubmit}
+						formData={formData}
+						handleChange={handleChange}
+					/>
 				) : (
-					<RegisterForm userType="tradesmen" />
+					<RegisterForm
+						userType="tradesmen"
+						handleSubmit={handleSubmit}
+						formData={formData}
+						handleChange={handleChange}
+					/>
 				)}
 			</div>
 		</Container>
