@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function SignUp({
+export default function UserDetailsForm({
 	userType,
 	handleSubmit,
 	formData,

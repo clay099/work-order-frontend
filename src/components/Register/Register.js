@@ -1,5 +1,5 @@
 import React from "react";
-import RegisterForm from "../RegisterForm/RegisterForm";
+import UserDetailsForm from "../UserDetailsForm/UserDetailsForm";
 import {
 	CssBaseline,
 	Container,
@@ -142,14 +142,14 @@ const Register = () => {
 					</Grid>
 				</Grid>
 				{toggle ? (
-					<RegisterForm
+					<UserDetailsForm
 						userType="user"
 						handleSubmit={handleSubmit}
 						formData={formData}
 						handleChange={handleChange}
 					/>
 				) : (
-					<RegisterForm
+					<UserDetailsForm
 						userType="tradesmen"
 						handleSubmit={handleSubmit}
 						formData={formData}
