@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { TableCell } from "@material-ui/core/";
 import { NewReleases } from "@material-ui/icons";
 
-const BidStatusIcon = ({ id }) => {
+const ReviewProjectIcon = ({ id }) => {
 	const { bid, userType } = useSelector((st) => ({
 		bid: st.bids[id],
 		userType: st.login.user_type,
@@ -19,4 +19,4 @@ const BidStatusIcon = ({ id }) => {
 	);
 };
 
-export default BidStatusIcon;
+export default ReviewProjectIcon;

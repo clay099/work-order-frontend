@@ -3,7 +3,7 @@ import { TableBody, TableRow } from "@material-ui/core/";
 import { useHistory } from "react-router-dom";
 import ShortRow from "../ShortRow/ShortRow";
 import RemainderRow from "../RemainderRow/RemainderRow";
-import BidStatusIcon from "../BidStatusIcon/BidStatusIcon";
+import ReviewProjectIcon from "../ReviewProjectIcon/ReviewProjectIcon";
 import Bid from "../Bid/Bid";
 
 const TableContents = ({ bodyData, tableType }) => {
@@ -25,7 +25,7 @@ const TableContents = ({ bodyData, tableType }) => {
 					{tableType === "full" ? (
 						<>
 							<RemainderRow project={project} />
-							<BidStatusIcon id={project.id} />
+							<ReviewProjectIcon id={project.id} />
 						</>
 					) : null}
 					{tableType === "auction" ? (
