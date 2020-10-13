@@ -142,7 +142,7 @@ export function markProjectAsCompleteWithAPI({ token, projectId }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
 			`projects/${projectId}`,
-			{ _token: token, status: "completed" },
+			{ _token: token, status: "completed", completed_at: new Date() },
 			"patch"
 		);
 		// if no resp.project an error occurred

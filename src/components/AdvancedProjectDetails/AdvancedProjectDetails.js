@@ -64,7 +64,6 @@ const AdvancedProjectDetails = () => {
 		"Issues",
 	];
 
-	console.log(project);
 	return (
 		<div className={classes.advancedProjectDetails}>
 			<DisplayTable
@@ -86,8 +85,10 @@ const AdvancedProjectDetails = () => {
 				</>
 			) : null}
 
+			<div>add reviews button - user only</div>
 			<div>reviews table</div>
-			<div>add reviews button</div>
+			<div>add issues button - user only</div>
+			<div>add issues dialog - user only</div>
 		</div>
 	);
 };
