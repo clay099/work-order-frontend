@@ -1,4 +1,4 @@
-import { LOGIN, ERROR, USER_DETAILS } from "./types";
+import { LOGIN, ERROR, USER_DETAILS, UPDATE_PROFILE } from "./types";
 import apiRequest from "../apiRequest/apiRequest";
 
 export function loginTradesmenWithAPI({ email, password }) {
@@ -13,7 +13,7 @@ export function loginTradesmenWithAPI({ email, password }) {
 		);
 		// tradesmen not found in DB
 		if (resp.status === 404) {
-			return dispatch(loginError(resp.data.error.message));
+			return dispatch(error(resp.data.error.message));
 		}
 		return dispatch(
 			loginTradesmen(resp.token, resp.user_type, resp.email, resp.id)
@@ -31,7 +31,7 @@ function loginTradesmen(token, user_type, email, id) {
 	};
 }
 
-function loginError(error_message) {
+function error(error_message) {
 	return {
 		type: ERROR,
 		error_message,
@@ -59,9 +59,11 @@ export function signupTradesmenWithAPI({
 		);
 		// tradesmen not created
 		if (!resp.token) {
-			return dispatch(loginError(resp.data.error.message));
+			return dispatch(error(resp.data.error.message));
 		}
-		return dispatch(signupTradesmen(resp.token, "user", email, resp.id));
+		return dispatch(
+			signupTradesmen(resp.token, "tradesmen", email, resp.id)
+		);
 	};
 }
 
@@ -86,9 +88,8 @@ export function getTradesmenProfileFromAPI({ token, id }) {
 		);
 		// user not found in DB
 		if (!resp.tradesman) {
-			return dispatch(loginError(resp.data.error.message));
+			return dispatch(error(resp.data.error.message));
 		}
-		console.log(resp);
 		return dispatch(tradesmenDetails(resp.tradesman));
 	};
 }
@@ -97,5 +98,72 @@ function tradesmenDetails(details) {
 	return {
 		type: USER_DETAILS,
 		details,
+	};
+}
+
+export function updateTradesmenWithAPI({
+	firstName,
+	lastName,
+	email,
+	phone,
+	password,
+	id,
+	token,
+}) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`tradesmen/${id}`,
+			{
+				first_name: firstName,
+				last_name: lastName,
+				email,
+				phone,
+				password,
+				_token: token,
+			},
+			"patch"
+		);
+		// user update not successful
+		if (!resp.token) {
+			return dispatch(error(resp.data.error.message));
+		}
+
+		return dispatch(
+			updateTradesmen(resp.tradesman, resp.token, "tradesmen")
+		);
+	};
+}
+
+function updateTradesmen(details, token, user_type) {
+	return {
+		type: UPDATE_PROFILE,
+		details,
+		token,
+		user_type,
+	};
+}
+
+export function checkTradesmenPasswordWithAPI({ email, password }) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`login/tradesmen`,
+			{
+				email,
+				password,
+			},
+			"post"
+		);
+		// tradesmen not found in DB
+		if (resp.data) {
+			return dispatch(error(resp.data.error.message));
+		}
+		return dispatch(checkPassword());
+	};
+}
+
+// just return passed it won't provide any reducer function
+function checkPassword() {
+	return {
+		type: "PASSED",
 	};
 }

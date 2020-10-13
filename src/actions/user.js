@@ -13,7 +13,7 @@ export function loginUserWithAPI({ email, password }) {
 		);
 		// user not found in DB
 		if (resp.status === 404) {
-			return dispatch(Error(resp.data.error.message));
+			return dispatch(error(resp.data.error.message));
 		}
 		return dispatch(
 			loginUser(resp.token, resp.user_type, resp.email, resp.id)
@@ -31,7 +31,7 @@ function loginUser(token, user_type, email, id) {
 	};
 }
 
-function Error(error_message) {
+function error(error_message) {
 	return {
 		type: ERROR,
 		error_message,
@@ -67,7 +67,7 @@ export function signupUserWithAPI({
 		);
 		// user not created
 		if (!resp.token) {
-			return dispatch(Error(resp.data.error.message));
+			return dispatch(error(resp.data.error.message));
 		}
 		return dispatch(signupUser(resp.token, "user", email, resp.id));
 	};
@@ -94,7 +94,7 @@ export function getUserProfileFromAPI({ token, id }) {
 		);
 		// user not found in DB
 		if (!resp.user) {
-			return dispatch(Error(resp.data.error.message));
+			return dispatch(error(resp.data.error.message));
 		}
 		return dispatch(userDetails(resp.user));
 	};
@@ -121,7 +121,6 @@ export function updateUserWithAPI({
 	token,
 }) {
 	return async function (dispatch) {
-		debugger;
 		const resp = await apiRequest.request(
 			`users/${id}`,
 			{
@@ -140,7 +139,7 @@ export function updateUserWithAPI({
 		);
 		// user update not successful
 		if (!resp.token) {
-			return dispatch(Error(resp.data.error.message));
+			return dispatch(error(resp.data.error.message));
 		}
 		return dispatch(updateUser(resp.user, resp.token, "user"));
 	};
@@ -152,5 +151,30 @@ function updateUser(details, token, user_type) {
 		details,
 		token,
 		user_type,
+	};
+}
+
+export function checkUserPasswordWithAPI({ email, password }) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`login/user`,
+			{
+				email,
+				password,
+			},
+			"post"
+		);
+		// tradesmen not found in DB
+		if (resp.data) {
+			return dispatch(error(resp.data.error.message));
+		}
+		return dispatch(checkPassword());
+	};
+}
+
+// just return passed it won't provide any reducer function
+function checkPassword() {
+	return {
+		type: "PASSED",
 	};
 }

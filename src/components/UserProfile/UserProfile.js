@@ -10,6 +10,11 @@ import useFields from "../../hooks/useFields";
 import useToggle from "../../hooks/useToggle";
 import UserDetailsForm from "../UserDetailsForm/UserDetailsForm";
 import { updateUserWithAPI } from "../../actions/user";
+import {
+	updateTradesmenWithAPI,
+	checkTradesmenPasswordWithAPI,
+} from "../../actions/tradesmen";
+import useCheckPassword from "../../hooks/useCheckPassword";
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -49,6 +54,8 @@ const UserProfile = () => {
 		email: "",
 		phone: "",
 		password: "",
+		newPassword: "",
+		confirmNewPassword: "",
 	};
 	if (userType === "user") {
 		INITIALSTATE.streetAddress = "";
@@ -73,7 +80,6 @@ const UserProfile = () => {
 				formData.lastName = resp.details.last_name || "";
 				formData.email = resp.details.email || "";
 				formData.phone = resp.details.phone || "";
-				formData.password = "";
 				if (userType === "user") {
 					formData.streetAddress = resp.details.street_address || "";
 					formData.zip = resp.details.address_zip || "";
@@ -94,19 +100,44 @@ const UserProfile = () => {
 
 	const classes = useStyles();
 
-	const { formData, handleChange, resetFormData } = useFields(INITIALSTATE);
+	const { formData, handleChange } = useFields(INITIALSTATE);
+
+	// checkPassword Data and functions
+	const { handleSubmit: handleCheckPasswordSubmit } = useCheckPassword({
+		email: formData.email,
+		password: formData.password,
+		userType,
+	});
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		let resp;
+
+		// check password matches server
+		let resp = await handleCheckPasswordSubmit();
+		if (resp === false) {
+			disabledTrue();
+			return;
+		}
+
+		// if user provides new password and confirm new password match(if they exist) update the password to be provided to the API
+		let password = formData.password;
+		// check newPassword doesn't equal ""
+		if (formData.newPassword !== "") {
+			// checks that newPassword matches the confirmed new password
+			if (formData.newPassword === formData.confirmNewPassword) {
+				// updates password variable to the newPassword
+				password = formData.newPassword;
+			}
+		}
 
 		if (userType === "user") {
+			// update details with API
 			resp = await dispatch(
 				updateUserWithAPI({
 					firstName: formData.firstName,
 					lastName: formData.lastName,
 					email: formData.email,
-					password: formData.password,
+					password,
 					phone: +formData.phone,
 					streetAddress: formData.streetAddress,
 					zip: +formData.zip,
@@ -117,6 +148,18 @@ const UserProfile = () => {
 				})
 			);
 		} else {
+			// update details with API
+			resp = await dispatch(
+				updateTradesmenWithAPI({
+					firstName: formData.firstName,
+					lastName: formData.lastName,
+					email: formData.email,
+					password,
+					phone: +formData.phone,
+					token,
+					id,
+				})
+			);
 		}
 		// write logic to update user & tradesmen
 		disabledTrue();
@@ -159,6 +202,7 @@ const UserProfile = () => {
 					disabled={disabled}
 					buttonText="Update User Profile"
 					editButton={editButton}
+					disabledEmail={true}
 				/>
 			</div>
 		</Container>

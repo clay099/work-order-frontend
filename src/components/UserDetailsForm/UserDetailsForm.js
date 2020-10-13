@@ -19,6 +19,7 @@ export default function UserDetailsForm({
 	formData,
 	handleChange,
 	disabled = false,
+	disabledEmail = false,
 	buttonText,
 	editButton = null,
 }) {
@@ -65,7 +66,7 @@ export default function UserDetailsForm({
 							name="email"
 							onChange={handleChange}
 							value={formData.email}
-							disabled={disabled}
+							disabled={disabledEmail}
 						/>
 					</Grid>
 					<Grid item xs={12} sm={6}>
@@ -102,6 +103,36 @@ export default function UserDetailsForm({
 							disabled={disabled}
 						/>
 					</Grid>
+					{disabledEmail ? (
+						<>
+							<Grid item xs={12} sm={6}>
+								<TextField
+									variant="outlined"
+									name="newPassword"
+									label="New Password"
+									type="password"
+									id="newPassword"
+									onChange={handleChange}
+									value={formData.newPassword}
+									disabled={disabled}
+									helperText="leave blank if you don't wish to change your password"
+								/>
+							</Grid>
+							<Grid item xs={12} sm={6}>
+								<TextField
+									variant="outlined"
+									name="confirmNewPassword"
+									label="Confirm New Password"
+									type="password"
+									id="confirmNewPassword"
+									onChange={handleChange}
+									value={formData.confirmNewPassword}
+									disabled={disabled}
+									helperText="leave blank if you don't wish to change your password"
+								/>
+							</Grid>
+						</>
+					) : null}
 				</Grid>
 				{!disabled ? (
 					<Button
