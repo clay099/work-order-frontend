@@ -16,7 +16,7 @@ const Bid = ({ projectId }) => {
 		} else {
 			// returns value if project does have a bid.
 			// note the user might not have placed a bid yet and result can still be undefined
-			bid = st.bids[projectId][st.login.id];
+			bid = st.bids[projectId][st.login.id].bid;
 		}
 
 		return {
@@ -33,7 +33,6 @@ const Bid = ({ projectId }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// Add submit logic
 		if (!bid) {
 			await dispatch(
 				submitNewBidToAPI({ token, projectId, bid: +formData.bid })

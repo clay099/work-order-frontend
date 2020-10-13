@@ -1,5 +1,6 @@
-import { UPDATE_BID, ERROR, FETCH_ALL_BIDS } from "./types";
+import { UPDATE_BID, ERROR, FETCH_ALL_BIDS, UPDATE_PROJECT } from "./types";
 import apiRequest from "../apiRequest/apiRequest";
+
 export function submitNewBidToAPI({ token, projectId, bid }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -72,5 +73,32 @@ function allBids(bidData) {
 	return {
 		type: FETCH_ALL_BIDS,
 		bidData,
+	};
+}
+
+export function acceptBidWithAPI({ projectId, token, tradesmen_id, price }) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`projects/${projectId}`,
+			{
+				_token: token,
+				tradesmen_id,
+				status: "progressing",
+				price,
+			},
+			"patch"
+		);
+		// if no resp.project an error occurred
+		if (!resp.project) {
+			return dispatch(bidError(resp.data.error.message));
+		}
+		return dispatch(acceptBid(resp.project));
+	};
+}
+
+function acceptBid(project) {
+	return {
+		type: UPDATE_PROJECT,
+		project,
 	};
 }

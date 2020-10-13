@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { getProjectDetailsFromAPI } from "../../actions/projects";
 import DisplayTable from "../DisplayTable/DisplayTable";
 import UserProjectButtons from "../UserProjectButtons/UserProjectButtons";
+import BidTable from "../BidTable/BidTable";
 
 const useStyles = makeStyles((theme) => ({
 	advancedProjectDetails: {
@@ -47,7 +48,6 @@ const AdvancedProjectDetails = () => {
 
 	// if user is not logged in token will evaluate to false and you will be redirected to the home page.
 	if (!token) {
-		console.log(token);
 		return <Redirect to="/" />;
 	}
 
@@ -64,6 +64,7 @@ const AdvancedProjectDetails = () => {
 		"Issues",
 	];
 
+	console.log(project);
 	return (
 		<div className={classes.advancedProjectDetails}>
 			<DisplayTable
@@ -71,12 +72,18 @@ const AdvancedProjectDetails = () => {
 				headingList={headingList}
 				tableTitle="Project Details"
 			/>
+
 			{userType === "user" ? (
-				<UserProjectButtons
-					status={project.status}
-					id={project.id}
-					token={token}
-				/>
+				<>
+					{project.status === "auction" ? (
+						<BidTable projectId={project.id} />
+					) : null}
+					<UserProjectButtons
+						status={project.status}
+						id={project.id}
+						token={token}
+					/>
+				</>
 			) : null}
 
 			<div>reviews table</div>

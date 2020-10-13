@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { getProjectsFromAPI } from "../../actions/projects";
+import { getBidsFromAPI } from "../../actions/bids";
 import DisplayTable from "../DisplayTable/DisplayTable";
 import { Typography } from "@material-ui/core";
 import Loading from "../Loading/Loading";
+import NewPostButton from "../NewPostButton/NewPostButton";
 
-const Projects = () => {
+const Projects = ({ userType }) => {
 	const { projects, token } = useSelector(
 		(st) => ({
 			projects: st.projects.projectList,
@@ -19,7 +21,10 @@ const Projects = () => {
 	useEffect(
 		function () {
 			async function getProjects() {
-				await dispatch(getProjectsFromAPI({ token }));
+				Promise.all([
+					await dispatch(getProjectsFromAPI({ token })),
+					await dispatch(getBidsFromAPI({ token })),
+				]);
 				setIsLoading(false);
 			}
 
@@ -33,7 +38,18 @@ const Projects = () => {
 	if (isLoading) return <Loading />;
 
 	if (!isLoading && projects.length === 0) {
-		return <Typography component="body1">Please add a post!</Typography>;
+		return (
+			<>
+				{userType === "user" ? (
+					<>
+						<Typography component="body1">
+							Please add a post!
+						</Typography>
+						<NewPostButton justify="flex-start" />
+					</>
+				) : null}
+			</>
+		);
 	}
 
 	const currentAndCompletedHeadingList = [
@@ -53,6 +69,7 @@ const Projects = () => {
 				headingList={currentAndCompletedHeadingList}
 				tableTitle="Current & Completed Projects"
 			/>
+			{userType === "user" ? <NewPostButton justify="flex-end" /> : null}
 		</>
 	);
 };

@@ -20,7 +20,11 @@ export default function rootReducer(state = {}, action) {
 			action.bidData.forEach((bid) => {
 				bids[bid.project_id] = {
 					...bids[bid.project_id],
-					[bid.tradesmen_id]: bid.bid,
+					[bid.tradesmen_id]: {
+						bid: bid.bid,
+						first_name: bid.first_name,
+						last_name: bid.last_name,
+					},
 				};
 			});
 			return bids;

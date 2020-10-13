@@ -26,7 +26,7 @@ const Dashboard = () => {
 	) : (
 		<div className={classes.dashboard}>
 			{userType === "tradesmen" ? <AuctionStageProjects /> : null}
-			<Projects />
+			<Projects userType={userType} />
 		</div>
 	);
 };
