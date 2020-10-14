@@ -25,7 +25,6 @@ const BidTableContents = ({ bidData, projectId }) => {
 	return (
 		<TableBody>
 			{Object.keys(bidData).map((tradesmenId) => {
-				console.log(bidData[tradesmenId]);
 				return (
 					<TableRow key={bidData[tradesmenId]}>
 						<TableCell>{bidData[tradesmenId].first_name}</TableCell>

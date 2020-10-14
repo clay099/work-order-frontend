@@ -7,6 +7,7 @@ import { getProjectDetailsFromAPI } from "../../actions/projects";
 import DisplayTable from "../DisplayTable/DisplayTable";
 import UserProjectButtons from "../UserProjectButtons/UserProjectButtons";
 import BidTable from "../BidTable/BidTable";
+import ReviewTable from "../ReviewTable/ReviewTable";
 
 const useStyles = makeStyles((theme) => ({
 	advancedProjectDetails: {
@@ -72,11 +73,16 @@ const AdvancedProjectDetails = () => {
 				tableTitle="Project Details"
 			/>
 
+			{project.status === "completed" ? (
+				<ReviewTable projectId={project.id} />
+			) : null}
+
 			{userType === "user" ? (
 				<>
 					{project.status === "auction" ? (
 						<BidTable projectId={project.id} />
 					) : null}
+
 					<UserProjectButtons
 						status={project.status}
 						id={project.id}
@@ -85,8 +91,6 @@ const AdvancedProjectDetails = () => {
 				</>
 			) : null}
 
-			<div>add reviews button - user only</div>
-			<div>reviews table</div>
 			<div>add issues button - user only</div>
 			<div>add issues dialog - user only</div>
 		</div>

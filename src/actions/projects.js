@@ -6,6 +6,8 @@ import {
 	FETCH_AUCTION_PROJECTS,
 	DELETE_PROJECT,
 	UPDATE_PROJECT,
+	UPDATE_REVIEW,
+	FETCH_REVIEW,
 } from "./types";
 import apiRequest from "../apiRequest/apiRequest";
 
@@ -157,5 +159,82 @@ function updateProject(project) {
 	return {
 		type: UPDATE_PROJECT,
 		project,
+	};
+}
+
+export function submitReviewWithAPI({
+	token,
+	project_id,
+	review_comment,
+	review_rating,
+}) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`reviews`,
+			{ _token: token, project_id, review_comment, review_rating },
+			"post"
+		);
+		// if no resp.review an error occurred
+		if (!resp.review) {
+			return dispatch(projectError(resp.data.error.message));
+		}
+		return dispatch(updateReview(resp.review));
+	};
+}
+
+export function updateReviewWithAPI({
+	token,
+	project_id,
+	review_comment,
+	review_rating,
+}) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`reviews/${project_id}`,
+			{ _token: token, review_comment, review_rating },
+			"patch"
+		);
+		// if no resp.review an error occurred
+		if (!resp.review) {
+			return dispatch(projectError(resp.data.error.message));
+		}
+		return dispatch(updateReview(resp.review));
+	};
+}
+
+function updateReview(review) {
+	return {
+		type: UPDATE_REVIEW,
+		review,
+	};
+}
+
+export function getProjectReviewFromAPI({ token, projectId }) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`reviews/${projectId}`,
+			{ _token: token },
+			"get"
+		);
+		// if no resp.review an error occurred
+		if (!resp.review) {
+			// we don't want to provide feedback to the user
+			return dispatch(noFeedbackError());
+		}
+		return dispatch(getReview(resp.review));
+	};
+}
+
+// needs to be separate to updateReview to avoid any user feedback when getting reviews
+function getReview(review) {
+	return {
+		type: FETCH_REVIEW,
+		review,
+	};
+}
+
+function noFeedbackError() {
+	return {
+		type: "",
 	};
 }

@@ -33,6 +33,11 @@ const Feedback = () => {
 				message: `Updated Profile Saved`,
 				severity: "success",
 			};
+		} else if (st.feedback.updatedReview) {
+			return {
+				message: `Review Saved`,
+				severity: "success",
+			};
 		}
 		return { message: undefined, severity: undefined };
 	}, shallowEqual());

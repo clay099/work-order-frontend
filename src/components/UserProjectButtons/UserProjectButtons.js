@@ -1,13 +1,14 @@
 import React from "react";
 import useToggle from "../../hooks/useToggle";
 import { Button, Grid, makeStyles } from "@material-ui/core/";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	deleteProjectFromAPI,
 	markProjectAsCompleteWithAPI,
 } from "../../actions/projects";
 import { useHistory } from "react-router-dom";
 import SimpleDialog from "../SimpleDialog/SimpleDialog";
+import ReviewProjectButtons from "../ReviewProjectButtons/ReviewProjectButtons";
 
 const useStyles = makeStyles((theme) => ({
 	userProjectButtons: {
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 const UserProjectButtons = ({ status, id, token }) => {
 	const classes = useStyles();
+	const { review } = useSelector((st) => ({ review: st.reviews[id] }));
 	const {
 		setTrue: handleOpenUpdate,
 		setFalse: handleCloseUpdate,
@@ -98,6 +100,13 @@ const UserProjectButtons = ({ status, id, token }) => {
 							/>
 						</Grid>
 					</>
+				) : null}
+				{status === "completed" ? (
+					!review ? (
+						<ReviewProjectButtons id={id} reviewed={false} />
+					) : (
+						<ReviewProjectButtons id={id} reviewed={true} />
+					)
 				) : null}
 			</Grid>
 		</>

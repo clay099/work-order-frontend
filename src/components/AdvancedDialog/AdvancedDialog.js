@@ -16,45 +16,36 @@ const AdvancedDialog = ({
 	id,
 	buttonText,
 	buttonColor,
-	TextFieldDataArray,
+	FormData,
 	handleChange,
+	maxWidth = "sm",
 }) => {
 	return (
-		<Dialog onClose={handleClose} open={open}>
+		<Dialog
+			onClose={handleClose}
+			open={open}
+			fullWidth={true}
+			maxWidth={maxWidth}
+		>
 			<DialogTitle id={id}>{titleText}</DialogTitle>
-			<form>
-				<DialogActions>
-					<DialogContent>
-						{TextFieldDataArray.map((textFieldData) => {
-							return (
-								<TextField
-									required
-									id={textFieldData.id}
-									label={textFieldData.label}
-									type={textFieldData.type}
-									name={textFieldData.name}
-									value={textFieldData.value}
-									onChange={handleChange}
-								/>
-							);
-						})}
-					</DialogContent>
-					<Button
-						variant="outlined"
-						color={buttonColor}
-						onClick={handleClose}
-					>
-						Cancel
-					</Button>
-					<Button
-						variant="contained"
-						color={buttonColor}
-						onClick={handleSubmit}
-					>
-						{buttonText}
-					</Button>
-				</DialogActions>
-			</form>
+
+			<DialogContent>{FormData.map((Field) => Field)}</DialogContent>
+			<DialogActions>
+				<Button
+					variant="outlined"
+					color={buttonColor}
+					onClick={handleClose}
+				>
+					Cancel
+				</Button>
+				<Button
+					variant="contained"
+					color={buttonColor}
+					onClick={handleSubmit}
+				>
+					{buttonText}
+				</Button>
+			</DialogActions>
 		</Dialog>
 	);
 };

@@ -4,6 +4,7 @@ import {
 	NEW_PROJECT,
 	UPDATE_BID,
 	UPDATE_PROFILE,
+	UPDATE_REVIEW,
 } from "../actions/types";
 
 export default function rootReducer(state = {}, action) {
@@ -16,9 +17,6 @@ export default function rootReducer(state = {}, action) {
 		case ERROR:
 			return { error: action.error_message };
 
-		case ERROR:
-			return { error: action.error_message };
-
 		case NEW_PROJECT:
 			return { newProject: action.project };
 
@@ -27,6 +25,9 @@ export default function rootReducer(state = {}, action) {
 
 		case UPDATE_PROFILE:
 			return { updatedEmail: "updated" };
+
+		case UPDATE_REVIEW:
+			return { updatedReview: action.review };
 
 		default:
 			return state;

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { getProjectsFromAPI } from "../../actions/projects";
+import {
+	getProjectsFromAPI,
+	getProjectReviewFromAPI,
+} from "../../actions/projects";
 import { getBidsFromAPI } from "../../actions/bids";
 import DisplayTable from "../DisplayTable/DisplayTable";
 import { Typography } from "@material-ui/core";
@@ -21,10 +24,23 @@ const Projects = ({ userType }) => {
 	useEffect(
 		function () {
 			async function getProjects() {
+				let resp;
 				Promise.all([
-					await dispatch(getProjectsFromAPI({ token })),
+					(resp = await dispatch(getProjectsFromAPI({ token }))),
 					await dispatch(getBidsFromAPI({ token })),
 				]);
+
+				Promise.all(
+					resp.projects.map((project) => {
+						dispatch(
+							getProjectReviewFromAPI({
+								token,
+								projectId: project.id,
+							})
+						);
+					})
+				);
+
 				setIsLoading(false);
 			}
 
