@@ -3,7 +3,7 @@ import useFields from "../../hooks/useFields";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Container, CssBaseline } from "@material-ui/core";
+import { Button, Container, CssBaseline, Typography } from "@material-ui/core";
 import BasicProjectForm from "../BasicProjectForm/BasicProjectForm";
 import { createNewProjectWithAPI } from "../../actions/projects";
 
@@ -65,6 +65,9 @@ const NewProjectForm = ({ token }) => {
 			<Container component="main" maxWidth="xs">
 				<div className={classes.paper}>
 					<CssBaseline />
+					<Typography component="h1" variant="h5">
+						Add New Project
+					</Typography>
 					<form className={classes.form} noValidate>
 						<BasicProjectForm
 							formData={formData}
