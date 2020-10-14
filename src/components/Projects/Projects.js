@@ -85,7 +85,9 @@ const Projects = ({ userType }) => {
 				headingList={currentAndCompletedHeadingList}
 				tableTitle="Current & Completed Projects"
 			/>
-			{userType === "user" ? <NewPostButton justify="flex-end" /> : null}
+			{userType === "user" ? (
+				<NewProjectButton justify="flex-end" />
+			) : null}
 		</>
 	);
 };
