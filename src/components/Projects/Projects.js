@@ -8,7 +8,7 @@ import { getBidsFromAPI } from "../../actions/bids";
 import DisplayTable from "../DisplayTable/DisplayTable";
 import { Typography } from "@material-ui/core";
 import Loading from "../Loading/Loading";
-import NewPostButton from "../NewPostButton/NewPostButton";
+import NewProjectButton from "../NewProjectButton/NewProjectButton";
 
 const Projects = ({ userType }) => {
 	const { projects, token } = useSelector(
@@ -61,7 +61,7 @@ const Projects = ({ userType }) => {
 						<Typography component="body1">
 							Please add a post!
 						</Typography>
-						<NewPostButton justify="flex-start" />
+						<NewProjectButton justify="flex-start" />
 					</>
 				) : null}
 			</>

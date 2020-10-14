@@ -3,7 +3,7 @@ import { Button, Grid } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
-const NewPostButton = ({ justify }) => {
+const NewProjectButton = ({ justify }) => {
 	const history = useHistory();
 
 	const useStyles = makeStyles((theme) => ({
@@ -34,4 +34,4 @@ const NewPostButton = ({ justify }) => {
 	);
 };
 
-export default NewPostButton;
+export default NewProjectButton;
