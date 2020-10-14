@@ -154,6 +154,20 @@ export function markProjectAsCompleteWithAPI({ token, projectId }) {
 		return dispatch(updateProject(resp.project));
 	};
 }
+export function submitIssueWithAPI({ token, projectId, issues }) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`projects/${projectId}`,
+			{ _token: token, issues },
+			"patch"
+		);
+		// if no resp.project an error occurred
+		if (!resp.project) {
+			return dispatch(projectError(resp.data.error.message));
+		}
+		return dispatch(updateProject(resp.project));
+	};
+}
 
 function updateProject(project) {
 	return {

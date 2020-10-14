@@ -9,6 +9,7 @@ import {
 import { useHistory } from "react-router-dom";
 import SimpleDialog from "../SimpleDialog/SimpleDialog";
 import ReviewProjectButtons from "../ReviewProjectButtons/ReviewProjectButtons";
+import ReviewIssueButton from "../ReviewIssueButton/ReviewIssueButton";
 
 const useStyles = makeStyles((theme) => ({
 	userProjectButtons: {
@@ -102,11 +103,21 @@ const UserProjectButtons = ({ status, id, token }) => {
 					</>
 				) : null}
 				{status === "completed" ? (
-					!review ? (
-						<ReviewProjectButtons id={id} reviewed={false} />
-					) : (
-						<ReviewProjectButtons id={id} reviewed={true} />
-					)
+					<>
+						<Grid item>
+							<ReviewIssueButton id={id} />
+						</Grid>
+						<Grid item>
+							{!review ? (
+								<ReviewProjectButtons
+									id={id}
+									reviewed={false}
+								/>
+							) : (
+								<ReviewProjectButtons id={id} reviewed={true} />
+							)}
+						</Grid>
+					</>
 				) : null}
 			</Grid>
 		</>

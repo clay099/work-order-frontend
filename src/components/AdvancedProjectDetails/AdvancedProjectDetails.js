@@ -90,9 +90,6 @@ const AdvancedProjectDetails = () => {
 					/>
 				</>
 			) : null}
-
-			<div>add issues button - user only</div>
-			<div>add issues dialog - user only</div>
 		</div>
 	);
 };
