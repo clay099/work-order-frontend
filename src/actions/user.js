@@ -1,6 +1,15 @@
 import { LOGIN, ERROR, USER_DETAILS, UPDATE_PROFILE } from "./types";
 import apiRequest from "../apiRequest/apiRequest";
 
+/**Action Creator
+ * @param  {string} email - user email
+ * @param  {string} password - user password
+ *
+ * Send request to API to verify the user and login.
+ *
+ * Returns an token, user_type, email and id or error message
+ *
+ */
 export function loginUserWithAPI({ email, password }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -21,6 +30,13 @@ export function loginUserWithAPI({ email, password }) {
 	};
 }
 
+/** login action
+ * @param {Array} projects
+ * @param {string} token
+ * @param {string} user_type
+ * @param {string} email
+ * @param {int} id
+ */
 function loginUser(token, user_type, email, id) {
 	return {
 		type: LOGIN,
@@ -31,6 +47,10 @@ function loginUser(token, user_type, email, id) {
 	};
 }
 
+/** error action
+ * @param {object} error_message
+ *
+ */
 function error(error_message) {
 	return {
 		type: ERROR,
@@ -38,6 +58,22 @@ function error(error_message) {
 	};
 }
 
+/**Action Creator
+ * @param  {string} firstName
+ * @param  {string} lastName
+ * @param  {string} email
+ * @param  {number} phone
+ * @param  {string} password
+ * @param  {string} streetAddress
+ * @param  {int} zip
+ * @param  {string} city
+ * @param  {string} country
+ *
+ * Send request to API to create a new user.
+ *
+ * Returns an token, user_type, email and id or error message
+ *
+ */
 export function signupUserWithAPI({
 	firstName,
 	lastName,
@@ -69,20 +105,19 @@ export function signupUserWithAPI({
 		if (!resp.token) {
 			return dispatch(error(resp.data.error.message));
 		}
-		return dispatch(signupUser(resp.token, "user", email, resp.id));
+		return dispatch(loginUser(resp.token, "user", email, resp.id));
 	};
 }
 
-function signupUser(token, user_type, email, id) {
-	return {
-		type: LOGIN,
-		token,
-		user_type,
-		email,
-		id,
-	};
-}
-
+/**Action Creator
+ * @param  {string} token
+ * @param  {int} id
+ *
+ * Send request to API to get user based on id.
+ *
+ * Returns an user object or error message
+ *
+ */
 export function getUserProfileFromAPI({ token, id }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -100,6 +135,10 @@ export function getUserProfileFromAPI({ token, id }) {
 	};
 }
 
+/** user details action
+ * @param {object} details - user details
+ *
+ */
 function userDetails(details) {
 	return {
 		type: USER_DETAILS,
@@ -107,6 +146,24 @@ function userDetails(details) {
 	};
 }
 
+/**Action Creator
+ * @param  {string} firstName
+ * @param  {string} lastName
+ * @param  {string} email
+ * @param  {number} phone
+ * @param  {string} password
+ * @param  {string} streetAddress
+ * @param  {int} zip
+ * @param  {string} city
+ * @param  {string} country
+ * @param  {int} id
+ * @param  {string} token
+ *
+ * Send request to API to update a user based on their id & token.
+ *
+ * Returns an user object, token and user_type or error message
+ *
+ */
 export function updateUserWithAPI({
 	firstName,
 	lastName,
@@ -145,6 +202,12 @@ export function updateUserWithAPI({
 	};
 }
 
+/** update user action
+ * @param {object} details - user details
+ * @param {string} token
+ * @param {string} user_type
+ *
+ */
 function updateUser(details, token, user_type) {
 	return {
 		type: UPDATE_PROFILE,
@@ -154,6 +217,15 @@ function updateUser(details, token, user_type) {
 	};
 }
 
+/**Action Creator
+ * @param  {string} email
+ * @param  {string} password
+ *
+ * Send request to API to login user
+ *
+ * Returns passed or error message
+ *
+ */
 export function checkUserPasswordWithAPI({ email, password }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -164,7 +236,7 @@ export function checkUserPasswordWithAPI({ email, password }) {
 			},
 			"post"
 		);
-		// tradesmen not found in DB
+		// user not found in DB
 		if (resp.data) {
 			return dispatch(error(resp.data.error.message));
 		}
@@ -172,8 +244,13 @@ export function checkUserPasswordWithAPI({ email, password }) {
 	};
 }
 
-// just return passed it won't provide any reducer function
-function checkPassword() {
+/** passed login action
+ *
+ * used to check that password is correct before changing user profile
+ *
+ * just return passed it won't provide any reducer function as program will then try to update the user profile. Any user feedback to come from this action
+ *
+ */ function checkPassword() {
 	return {
 		type: "PASSED",
 	};

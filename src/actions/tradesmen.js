@@ -1,6 +1,15 @@
 import { LOGIN, ERROR, USER_DETAILS, UPDATE_PROFILE } from "./types";
 import apiRequest from "../apiRequest/apiRequest";
 
+/**Action Creator
+ * @param  {string} email - user email
+ * @param  {string} password - user password
+ *
+ * Send request to API to verify the user and login.
+ *
+ * Returns an token, user_type, email and id or error message
+ *
+ */
 export function loginTradesmenWithAPI({ email, password }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -21,6 +30,13 @@ export function loginTradesmenWithAPI({ email, password }) {
 	};
 }
 
+/** login action
+ * @param {Array} projects
+ * @param {string} token
+ * @param {string} user_type
+ * @param {string} email
+ * @param {int} id
+ */
 function loginTradesmen(token, user_type, email, id) {
 	return {
 		type: LOGIN,
@@ -31,6 +47,10 @@ function loginTradesmen(token, user_type, email, id) {
 	};
 }
 
+/** error action
+ * @param {object} error_message
+ *
+ */
 function error(error_message) {
 	return {
 		type: ERROR,
@@ -38,6 +58,18 @@ function error(error_message) {
 	};
 }
 
+/**Action Creator
+ * @param  {string} firstName
+ * @param  {string} lastName
+ * @param  {string} email
+ * @param  {number} phone
+ * @param  {string} password
+ *
+ * Send request to API to create a new tradesmen.
+ *
+ * Returns an token, user_type, email and id or error message
+ *
+ */
 export function signupTradesmenWithAPI({
 	firstName,
 	lastName,
@@ -62,21 +94,20 @@ export function signupTradesmenWithAPI({
 			return dispatch(error(resp.data.error.message));
 		}
 		return dispatch(
-			signupTradesmen(resp.token, "tradesmen", email, resp.id)
+			loginTradesmen(resp.token, "tradesmen", email, resp.id)
 		);
 	};
 }
 
-function signupTradesmen(token, user_type, email, id) {
-	return {
-		type: LOGIN,
-		token,
-		user_type,
-		email,
-		id,
-	};
-}
-
+/**Action Creator
+ * @param  {string} token
+ * @param  {int} id
+ *
+ * Send request to API to get tradesmen based on id.
+ *
+ * Returns an tradesmen object or error message
+ *
+ */
 export function getTradesmenProfileFromAPI({ token, id }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -94,6 +125,10 @@ export function getTradesmenProfileFromAPI({ token, id }) {
 	};
 }
 
+/** tradesmen details action
+ * @param {object} details - tradesmen details
+ *
+ */
 function tradesmenDetails(details) {
 	return {
 		type: USER_DETAILS,
@@ -101,6 +136,20 @@ function tradesmenDetails(details) {
 	};
 }
 
+/**Action Creator
+ * @param  {string} firstName
+ * @param  {string} lastName
+ * @param  {string} email
+ * @param  {number} phone
+ * @param  {string} password
+ * @param  {int} id
+ * @param  {string} token
+ *
+ * Send request to API to update a tradesmen based on their id & token.
+ *
+ * Returns an tradesmen object, token and user_type or error message
+ *
+ */
 export function updateTradesmenWithAPI({
 	firstName,
 	lastName,
@@ -134,6 +183,12 @@ export function updateTradesmenWithAPI({
 	};
 }
 
+/** update tradesmen action
+ * @param {object} details - tradesmen details
+ * @param {string} token
+ * @param {string} user_type
+ *
+ */
 function updateTradesmen(details, token, user_type) {
 	return {
 		type: UPDATE_PROFILE,
@@ -143,6 +198,15 @@ function updateTradesmen(details, token, user_type) {
 	};
 }
 
+/**Action Creator
+ * @param  {string} email
+ * @param  {string} password
+ *
+ * Send request to API to login tradesmen
+ *
+ * Returns passed or error message
+ *
+ */
 export function checkTradesmenPasswordWithAPI({ email, password }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -161,7 +225,13 @@ export function checkTradesmenPasswordWithAPI({ email, password }) {
 	};
 }
 
-// just return passed it won't provide any reducer function
+/** passed login action
+ *
+ * used to check that password is correct before changing user profile
+ *
+ * just return passed it won't provide any reducer function as program will then try to update the user profile. Any user feedback to come from this action
+ *
+ */
 function checkPassword() {
 	return {
 		type: "PASSED",
