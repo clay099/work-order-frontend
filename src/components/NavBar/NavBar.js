@@ -16,18 +16,7 @@ import "./NavBar.css";
 import { useSelector, useDispatch } from "react-redux";
 import logoutAll from "../../actions/logout";
 import { useHistory } from "react-router-dom";
-
-const useStyles = makeStyles((theme) => ({
-	root: {
-		flexGrow: 1,
-	},
-	title: {
-		flexGrow: 1,
-	},
-	icon: {
-		marginRight: theme.spacing(2),
-	},
-}));
+import useStyles from "./styles";
 
 export default function MenuAppBar() {
 	const classes = useStyles();

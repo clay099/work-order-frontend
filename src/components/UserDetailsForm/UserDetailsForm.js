@@ -1,17 +1,7 @@
 import React from "react";
 import { Button, TextField, Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import FormAddressItems from "../FormAddressItems/FormAddressItems";
-
-const useStyles = makeStyles((theme) => ({
-	form: {
-		width: "100%", // Fix IE 11 issue.
-		marginTop: theme.spacing(3),
-	},
-	submit: {
-		margin: theme.spacing(3, 0, 2),
-	},
-}));
+import useStyles from "./styles";
 
 export default function UserDetailsForm({
 	userType,

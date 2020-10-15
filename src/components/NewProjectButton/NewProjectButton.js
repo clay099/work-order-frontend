@@ -1,16 +1,10 @@
 import React from "react";
 import { Button, Grid } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import useStyles from "./styles";
 
 const NewProjectButton = ({ justify }) => {
 	const history = useHistory();
-
-	const useStyles = makeStyles((theme) => ({
-		newProjectButton: {
-			marginTop: theme.spacing(2),
-		},
-	}));
 
 	const classes = useStyles();
 

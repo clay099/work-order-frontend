@@ -2,14 +2,7 @@ import React from "react";
 import { Table, Typography, Paper, TableContainer } from "@material-ui/core/";
 import TableHeadings from "../TableHeadings/TableHeadings";
 import TableContents from "../TableContents/TableContents";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-	table: {
-		marginTop: theme.spacing(4),
-		padding: theme.spacing(4),
-	},
-}));
+import useStyles from "./styles";
 
 const DisplayTable = ({
 	projectData,

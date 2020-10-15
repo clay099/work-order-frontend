@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid, Button, Dialog } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import LoginForm from "../LoginForm/LoginForm";
 import useToggle from "../../hooks/useToggle";
+import useStyles from "./styles";
 
 const LoginButtons = () => {
 	const {
@@ -16,12 +16,6 @@ const LoginButtons = () => {
 		setFalse: handleCloseTradesmen,
 		toggle: tradesmenOpen,
 	} = useToggle(false);
-
-	const useStyles = makeStyles((theme) => ({
-		homeButtons: {
-			marginTop: theme.spacing(4),
-		},
-	}));
 
 	const classes = useStyles();
 	return (

@@ -8,7 +8,6 @@ import {
 	Button,
 	Grid,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useToggle from "../../hooks/useToggle";
 import useFields from "../../hooks/useFields";
@@ -16,22 +15,7 @@ import { signupUserWithAPI } from "../../actions/user";
 import { signupTradesmenWithAPI } from "../../actions/tradesmen";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
-const useStyles = makeStyles((theme) => ({
-	paper: {
-		marginTop: theme.spacing(2),
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-	},
-	avatar: {
-		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main,
-	},
-	userType: {
-		marginTop: theme.spacing(1),
-	},
-}));
+import useStyles from "./styles";
 
 const Register = () => {
 	const classes = useStyles();

@@ -1,15 +1,8 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import useStyles from "./styles";
 
-const HomeHeading = () => {
-	const useStyles = makeStyles((theme) => ({
-		aboutContent: {
-			backgroundColor: theme.palette.background.paper,
-			padding: theme.spacing(8, 0, 6),
-		},
-	}));
-
+const AboutProject = () => {
 	const classes = useStyles();
 
 	return (
@@ -30,4 +23,4 @@ const HomeHeading = () => {
 	);
 };
 
-export default HomeHeading;
+export default AboutProject;

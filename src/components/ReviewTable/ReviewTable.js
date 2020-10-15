@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import TableHeadings from "../TableHeadings/TableHeadings";
-import { makeStyles } from "@material-ui/core/styles";
 import {
 	Table,
 	Typography,
@@ -11,13 +10,7 @@ import {
 	TableCell,
 	TableRow,
 } from "@material-ui/core/";
-
-const useStyles = makeStyles((theme) => ({
-	table: {
-		marginTop: theme.spacing(4),
-		padding: theme.spacing(4),
-	},
-}));
+import useStyles from "./styles";
 
 const ReviewTable = ({ projectId }) => {
 	const classes = useStyles();

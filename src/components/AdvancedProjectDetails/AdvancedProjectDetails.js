@@ -2,18 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 import { getProjectDetailsFromAPI } from "../../actions/projects";
 import DisplayTable from "../DisplayTable/DisplayTable";
 import UserProjectButtons from "../UserProjectButtons/UserProjectButtons";
 import BidTable from "../BidTable/BidTable";
 import ReviewTable from "../ReviewTable/ReviewTable";
-
-const useStyles = makeStyles((theme) => ({
-	advancedProjectDetails: {
-		marginTop: theme.spacing(4),
-	},
-}));
+import useStyles from "./styles";
 
 const AdvancedProjectDetails = () => {
 	const classes = useStyles();

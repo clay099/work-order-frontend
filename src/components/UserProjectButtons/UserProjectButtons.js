@@ -1,6 +1,6 @@
 import React from "react";
 import useToggle from "../../hooks/useToggle";
-import { Button, Grid, makeStyles } from "@material-ui/core/";
+import { Button, Grid } from "@material-ui/core/";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	deleteProjectFromAPI,
@@ -10,12 +10,7 @@ import { useHistory } from "react-router-dom";
 import SimpleDialog from "../SimpleDialog/SimpleDialog";
 import ReviewProjectButtons from "../ReviewProjectButtons/ReviewProjectButtons";
 import ReviewIssueButton from "../ReviewIssueButton/ReviewIssueButton";
-
-const useStyles = makeStyles((theme) => ({
-	userProjectButtons: {
-		marginTop: theme.spacing(4),
-	},
-}));
+import useStyles from "./styles";
 
 const UserProjectButtons = ({ status, id, token }) => {
 	const classes = useStyles();

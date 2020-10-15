@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
 import { Redirect } from "react-router-dom";
 import { Typography, Button, Container } from "@material-ui/core";
 import { getUserProfileFromAPI } from "../../actions/user";
@@ -10,23 +9,9 @@ import useFields from "../../hooks/useFields";
 import useToggle from "../../hooks/useToggle";
 import UserDetailsForm from "../UserDetailsForm/UserDetailsForm";
 import { updateUserWithAPI } from "../../actions/user";
-import {
-	updateTradesmenWithAPI,
-	checkTradesmenPasswordWithAPI,
-} from "../../actions/tradesmen";
+import { updateTradesmenWithAPI } from "../../actions/tradesmen";
 import useCheckPassword from "../../hooks/useCheckPassword";
-
-const useStyles = makeStyles((theme) => ({
-	paper: {
-		marginTop: theme.spacing(2),
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-	},
-	submit: {
-		margin: theme.spacing(3, 0, 2),
-	},
-}));
+import useStyles from "./styles";
 
 const UserProfile = () => {
 	const { token, userType, id, userDetails } = useSelector(

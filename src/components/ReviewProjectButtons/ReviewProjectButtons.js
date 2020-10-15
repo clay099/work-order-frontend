@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Button, TextField, Slider } from "@material-ui/core/";
 import AdvancedDialog from "../AdvancedDialog/AdvancedDialog";
 import useToggle from "../../hooks/useToggle";
@@ -10,15 +9,7 @@ import {
 	updateReviewWithAPI,
 } from "../../actions/projects";
 import { useDispatch } from "react-redux";
-
-const useStyles = makeStyles((theme) => ({
-	button: {
-		marginTop: theme.spacing(2),
-	},
-	sliderTitle: {
-		marginTop: theme.spacing(2),
-	},
-}));
+import useStyles from "./styles";
 
 const ReviewProjectButtons = ({ id, reviewed }) => {
 	const classes = useStyles();

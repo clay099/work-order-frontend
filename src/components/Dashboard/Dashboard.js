@@ -2,14 +2,8 @@ import React from "react";
 import Projects from "../Projects/Projects";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 import AuctionStageProjects from "../AuctionStageProjects/AuctionStageProjects";
-
-const useStyles = makeStyles((theme) => ({
-	dashboard: {
-		marginTop: theme.spacing(4),
-	},
-}));
+import useStyles from "./styles";
 
 const Dashboard = () => {
 	// gets user email from store

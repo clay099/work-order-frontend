@@ -2,15 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import TableHeadings from "../TableHeadings/TableHeadings";
 import BidTableContents from "../BidTableContents/BidTableContents";
-import { makeStyles } from "@material-ui/core/styles";
 import { Table, Typography, Paper, TableContainer } from "@material-ui/core/";
-
-const useStyles = makeStyles((theme) => ({
-	table: {
-		marginTop: theme.spacing(4),
-		padding: theme.spacing(4),
-	},
-}));
+import useStyles from "./styles";
 
 const BidTable = ({ projectId }) => {
 	const classes = useStyles();
