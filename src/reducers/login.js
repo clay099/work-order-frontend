@@ -1,5 +1,9 @@
 import { LOGIN, LOGOUT, UPDATE_PROFILE } from "../actions/types";
 
+/**login reducer
+ *
+ * create reducers which take an action.type and update the state
+ */
 export default function rootReducer(state = {}, action) {
 	switch (action.type) {
 		case LOGIN:
@@ -11,6 +15,7 @@ export default function rootReducer(state = {}, action) {
 				id: action.id,
 			};
 
+		// separate from LOGIN to provide different user feedback in the feedback reducer
 		case UPDATE_PROFILE:
 			return {
 				...state,

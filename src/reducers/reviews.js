@@ -5,6 +5,10 @@ import {
 	FETCH_REVIEW,
 } from "../actions/types";
 
+/**reviews reducer
+ *
+ * create reducers which take an action.type and update the state
+ */
 export default function rootReducer(state = {}, action) {
 	switch (action.type) {
 		case GET_REVIEW:
@@ -20,7 +24,7 @@ export default function rootReducer(state = {}, action) {
 				},
 			};
 
-    // needs to be separate to update review to avoid any user feedback when getting reviews
+		// needs to be separate to update review to avoid any user feedback when getting reviews
 		case FETCH_REVIEW:
 			return {
 				...state,

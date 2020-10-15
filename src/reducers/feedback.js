@@ -7,6 +7,10 @@ import {
 	UPDATE_REVIEW,
 } from "../actions/types";
 
+/**feedback reducer
+ *
+ * create reducers which take an action.type and update the state
+ */
 export default function rootReducer(state = {}, action) {
 	switch (action.type) {
 		case LOGIN:

@@ -6,6 +6,9 @@ import user from "./user";
 import bids from "./bids";
 import reviews from "./reviews";
 
+/**
+ * rootReducer combines all reducers
+ */
 export default combineReducers({
 	login,
 	projects,
