@@ -2,6 +2,17 @@ import { useDispatch } from "react-redux";
 import { checkTradesmenPasswordWithAPI } from "../actions/tradesmen";
 import { checkUserPasswordWithAPI } from "../actions/user";
 
+/** useCheckPassword Hook
+ * @param  {string} email
+ * @param  {string} password
+ * @param  {string} userType
+ *
+ * Creates a custom hook to check if a password validates with the API.
+ *
+ * When called will submit a call to the API to check that the provided password validates with the API.
+ *
+ * Returns an error if the API does not validate or returns true if the API validates the provided details
+ */
 const useCheckPassword = ({ email, password, userType }) => {
 	const dispatch = useDispatch();
 
