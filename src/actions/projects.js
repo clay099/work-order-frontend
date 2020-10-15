@@ -11,6 +11,14 @@ import {
 } from "./types";
 import apiRequest from "../apiRequest/apiRequest";
 
+/**Action Creator
+ * @param  {string} token - user token
+ *
+ * Send request to API to get all projects from the API.
+ *
+ * Returns an array of project objects or error message
+ *
+ */
 export function getProjectsFromAPI({ token }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -24,13 +32,28 @@ export function getProjectsFromAPI({ token }) {
 	};
 }
 
+/** all projects action
+ * @param {Array} projects - array of project objects
+ *
+ */
 function getProjects(projects) {
 	return {
 		type: FETCH_PROJECTS,
 		projects,
-	};
-}
-
+  };
+  
+/**Action Creator
+ * @param  {string} description - project description
+ * @param  {string} streetAddress - project street address
+ * @param  {} zip - project zip
+ * @param  {string} city - project city
+ * @param  {string} country - project country
+ * @param  {string} token - user token
+ * 
+ * Send request to API to create a new project
+ * 
+ * Returns an project object or error message
+ */
 export function createNewProjectWithAPI({
 	description,
 	streetAddress,
@@ -60,6 +83,10 @@ export function createNewProjectWithAPI({
 	};
 }
 
+/** new project action
+ * @param {object} projects - project objects
+ *
+ */
 function newProject(project) {
 	return {
 		type: NEW_PROJECT,
@@ -67,6 +94,10 @@ function newProject(project) {
 	};
 }
 
+/** project error action
+ * @param {object} error_message - error message object
+ *
+ */
 function projectError(error_message) {
 	return {
 		type: ERROR,
@@ -74,6 +105,14 @@ function projectError(error_message) {
 	};
 }
 
+/**Action Creator
+ * @param  {string} token - user token
+ * @param  {int} projectId - project id
+ * 
+ * Send request to API to get all project details from its id
+ * 
+ * Returns an project object or error message
+ */
 export function getProjectDetailsFromAPI({ token, projectId }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -91,6 +130,10 @@ export function getProjectDetailsFromAPI({ token, projectId }) {
 	};
 }
 
+/** project details action
+ * @param {object} project - project object
+ *
+ */
 function projectDetails(project) {
 	return {
 		type: PROJECT_DETAILS,
@@ -98,6 +141,14 @@ function projectDetails(project) {
 	};
 }
 
+/**Action Creator
+ * @param  {string} token - user token
+ *
+ * Send request to API to get all projects from the API currently in the auction stage.
+ *
+ * Returns an array of project objects or error message
+ *
+ */
 export function getAuctionProjectsFromAPI({ token }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -111,6 +162,10 @@ export function getAuctionProjectsFromAPI({ token }) {
 	};
 }
 
+/** auction project details action
+ * @param {array} project - array of project object
+ *
+ */
 function getAuctionProjects(projects) {
 	return {
 		type: FETCH_AUCTION_PROJECTS,
@@ -118,6 +173,15 @@ function getAuctionProjects(projects) {
 	};
 }
 
+/**Action Creator
+ * @param  {string} token - user token
+ * @param  {int} projectId - project id
+ *
+ * Send request to API to delete the project by the provided id.
+ *
+ * Returns an success message string or error message
+ *
+ */
 export function deleteProjectFromAPI({ token, projectId }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -133,6 +197,10 @@ export function deleteProjectFromAPI({ token, projectId }) {
 	};
 }
 
+/** delete project action
+ * @param {int} projectId - project id
+ *
+ */
 function deleteProject(projectId) {
 	return {
 		type: DELETE_PROJECT,
@@ -140,6 +208,15 @@ function deleteProject(projectId) {
 	};
 }
 
+/**Action Creator
+ * @param  {string} token - user token
+ * @param  {int} projectId - project id
+ *
+ * Send request to API update the project and mark the status as complete at todays date.
+ *
+ * Returns an project object or error message
+ *
+ */
 export function markProjectAsCompleteWithAPI({ token, projectId }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -154,6 +231,17 @@ export function markProjectAsCompleteWithAPI({ token, projectId }) {
 		return dispatch(updateProject(resp.project));
 	};
 }
+
+/**Action Creator
+ * @param  {string} token - user token
+ * @param  {int} projectId - project id
+ * @param  {string} issues - issues the user had with the project
+ *
+ * Send request to API update the project with the provided user issue.
+ *
+ * Returns an project object or error message
+ *
+ */
 export function submitIssueWithAPI({ token, projectId, issues }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -169,6 +257,10 @@ export function submitIssueWithAPI({ token, projectId, issues }) {
 	};
 }
 
+/** update project details action
+ * @param {object} project - project object
+ *
+ */
 function updateProject(project) {
 	return {
 		type: UPDATE_PROJECT,
@@ -176,6 +268,17 @@ function updateProject(project) {
 	};
 }
 
+/**Action Creator
+ * @param  {string} token - user token
+ * @param  {int} project_id - project id
+ * @param  {string} review_comment - review comment the user had for the project
+ * @param  {int} review_rating - review rating the user provided between 0-10
+ *
+ * Send request to API create a review based on the project id
+ *
+ * Returns an review object or error message
+ *
+ */
 export function submitReviewWithAPI({
 	token,
 	project_id,
@@ -196,6 +299,18 @@ export function submitReviewWithAPI({
 	};
 }
 
+
+/**Action Creator
+ * @param  {string} token - user token
+ * @param  {int} project_id - project id
+ * @param  {string} review_comment - review comment the user had for the project
+ * @param  {int} review_rating - review rating the user provided between 0-10
+ *
+ * Send request to API update a review based on the project id
+ *
+ * Returns an review object or error message
+ *
+ */
 export function updateReviewWithAPI({
 	token,
 	project_id,
@@ -216,6 +331,10 @@ export function updateReviewWithAPI({
 	};
 }
 
+/** update review action
+ * @param {object} review - review object
+ *
+ */
 function updateReview(review) {
 	return {
 		type: UPDATE_REVIEW,
@@ -223,6 +342,16 @@ function updateReview(review) {
 	};
 }
 
+
+/**Action Creator
+ * @param  {string} token - user token
+ * @param  {int} projectID - project id
+ *
+ * Send request to API to get review based on the project id
+ *
+ * Returns an review object or error message
+ *
+ */
 export function getProjectReviewFromAPI({ token, projectId }) {
 	return async function (dispatch) {
 		const resp = await apiRequest.request(
@@ -239,7 +368,11 @@ export function getProjectReviewFromAPI({ token, projectId }) {
 	};
 }
 
-// needs to be separate to updateReview to avoid any user feedback when getting reviews
+/** get review action
+ * @param {object} review - review object
+ *
+ * needs to be separate to updateReview to avoid any user feedback when getting reviews
+ */
 function getReview(review) {
 	return {
 		type: FETCH_REVIEW,
@@ -247,6 +380,10 @@ function getReview(review) {
 	};
 }
 
+/** update review action
+ *
+ * needs to be separate to error to avoid any user feedback when getting reviews and an error is thrown (occurs if no review is provided for project id)
+ */
 function noFeedbackError() {
 	return {
 		type: "",
