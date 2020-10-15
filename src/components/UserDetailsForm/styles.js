@@ -1,13 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { form, submit } from "../../styles/styleObjects";
 
-const useStyles = makeStyles((theme) => ({
-	form: {
-		width: "100%", // Fix IE 11 issue.
-		marginTop: theme.spacing(3),
-	},
-	submit: {
-		margin: theme.spacing(3, 0, 2),
-	},
-}));
+const useStyles = makeStyles((theme) => {
+	let formObj = form(theme);
+	let submitObj = submit(theme);
+	return { ...formObj, ...submitObj };
+});
 
 export default useStyles;

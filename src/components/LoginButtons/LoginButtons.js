@@ -19,7 +19,7 @@ const LoginButtons = () => {
 
 	const classes = useStyles();
 	return (
-		<div className={classes.homeButtons}>
+		<div className={classes.styledButton}>
 			<Grid container spacing={2} justify="center">
 				<Grid item>
 					<Button

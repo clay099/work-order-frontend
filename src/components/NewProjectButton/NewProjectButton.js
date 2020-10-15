@@ -13,7 +13,7 @@ const NewProjectButton = ({ justify }) => {
 			container
 			spacing={2}
 			justify={justify}
-			className={classes.newProjectButton}
+			className={classes.styledButton}
 		>
 			<Grid item>
 				<Button

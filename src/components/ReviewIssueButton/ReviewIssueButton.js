@@ -60,7 +60,7 @@ const ReviewIssueButton = ({ id }) => {
 				variant="outlined"
 				color="primary"
 				onClick={handleOpen}
-				className={classes.button}
+				className={classes.styledButton}
 			>
 				Add Project Issue
 			</Button>

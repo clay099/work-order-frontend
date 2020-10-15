@@ -52,7 +52,7 @@ const UserProjectButtons = ({ status, id, token }) => {
 
 	return (
 		<>
-			<Grid container spacing={2} className={classes.userProjectButtons}>
+			<Grid container spacing={2} className={classes.styledButton}>
 				{status === "auction" ? (
 					<>
 						<Grid item>

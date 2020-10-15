@@ -1,15 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { root, title, icon } from "../../styles/styleObjects";
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		flexGrow: 1,
-	},
-	title: {
-		flexGrow: 1,
-	},
-	icon: {
-		marginRight: theme.spacing(2),
-	},
-}));
+const useStyles = makeStyles((theme) => {
+	let rootObj = root(theme);
+	let titleObj = title(theme);
+	let iconObj = icon(theme);
+	return { ...rootObj, ...titleObj, ...iconObj };
+});
 
 export default useStyles;

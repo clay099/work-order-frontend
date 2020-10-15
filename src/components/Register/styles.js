@@ -1,19 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { paper, avatar, userType } from "../../styles/styleObjects";
 
-const useStyles = makeStyles((theme) => ({
-	paper: {
-		marginTop: theme.spacing(2),
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-	},
-	avatar: {
-		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main,
-	},
-	userType: {
-		marginTop: theme.spacing(1),
-	},
-}));
+const useStyles = makeStyles((theme) => {
+	let paperObj = paper(theme);
+	let avatarObj = avatar(theme);
+	let userTypeObj = userType(theme);
+	return { ...paperObj, ...avatarObj, ...userTypeObj };
+});
 
 export default useStyles;

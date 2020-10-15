@@ -1,10 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { table } from "../../styles/styleObjects";
 
-const useStyles = makeStyles((theme) => ({
-	table: {
-		marginTop: theme.spacing(4),
-		padding: theme.spacing(4),
-	},
-}));
+const useStyles = makeStyles((theme) => {
+	return table(theme);
+});
 
 export default useStyles;

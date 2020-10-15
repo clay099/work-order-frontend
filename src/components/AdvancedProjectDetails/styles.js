@@ -1,9 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { advancedProjectDetails } from "../../styles/styleObjects";
 
-const useStyles = makeStyles((theme) => ({
-	advancedProjectDetails: {
-		marginTop: theme.spacing(4),
-	},
-}));
+const useStyles = makeStyles((theme) => {
+	return advancedProjectDetails(theme);
+});
 
 export default useStyles;

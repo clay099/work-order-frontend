@@ -114,7 +114,7 @@ const ReviewProjectButtons = ({ id, reviewed }) => {
 				variant="contained"
 				color="primary"
 				onClick={handleOpen}
-				className={classes.button}
+				className={classes.styledButton}
 			>
 				{!reviewed ? "Review Project" : "Update Project Review"}
 			</Button>
