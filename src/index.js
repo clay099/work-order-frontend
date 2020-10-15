@@ -5,8 +5,9 @@ import App from "./components/App/App";
 import * as serviceWorker from "./serviceWorker";
 // add Roboto Font - recommended front for Material-ui
 import "fontsource-roboto";
+
+// redux-persist - library - allows for state to persist - when set up saves state to local storage
 import { Provider } from "react-redux";
-// import { store } from "./store";
 import { store, persistedStore } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 
