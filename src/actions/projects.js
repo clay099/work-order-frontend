@@ -40,8 +40,9 @@ function getProjects(projects) {
 	return {
 		type: FETCH_PROJECTS,
 		projects,
-  };
-  
+	};
+}
+
 /**Action Creator
  * @param  {string} description - project description
  * @param  {string} streetAddress - project street address
@@ -49,9 +50,9 @@ function getProjects(projects) {
  * @param  {string} city - project city
  * @param  {string} country - project country
  * @param  {string} token - user token
- * 
+ *
  * Send request to API to create a new project
- * 
+ *
  * Returns an project object or error message
  */
 export function createNewProjectWithAPI({
@@ -108,9 +109,9 @@ function projectError(error_message) {
 /**Action Creator
  * @param  {string} token - user token
  * @param  {int} projectId - project id
- * 
+ *
  * Send request to API to get all project details from its id
- * 
+ *
  * Returns an project object or error message
  */
 export function getProjectDetailsFromAPI({ token, projectId }) {
@@ -299,7 +300,6 @@ export function submitReviewWithAPI({
 	};
 }
 
-
 /**Action Creator
  * @param  {string} token - user token
  * @param  {int} project_id - project id
@@ -341,7 +341,6 @@ function updateReview(review) {
 		review,
 	};
 }
-
 
 /**Action Creator
  * @param  {string} token - user token
