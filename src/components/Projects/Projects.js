@@ -59,7 +59,7 @@ const Projects = ({ userType }) => {
 				{userType === "user" ? (
 					<>
 						<Typography component="body1">
-							Please add a post!
+							Please add a project!
 						</Typography>
 						<NewProjectButton justify="flex-start" />
 					</>
