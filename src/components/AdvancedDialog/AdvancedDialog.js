@@ -5,7 +5,6 @@ import {
 	Button,
 	DialogActions,
 	DialogContent,
-	TextField,
 } from "@material-ui/core/";
 
 const AdvancedDialog = ({
@@ -17,7 +16,6 @@ const AdvancedDialog = ({
 	buttonText,
 	buttonColor,
 	FormData,
-	handleChange,
 	maxWidth = "sm",
 }) => {
 	return (
