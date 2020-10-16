@@ -18,7 +18,28 @@ import logoutAll from "../../actions/logout";
 import { useHistory } from "react-router-dom";
 import useStyles from "./styles";
 
-export default function MenuAppBar() {
+/** NavBar Component
+ *
+ * Gets user_type from Redux store
+ *
+ * Renders a navbar with the following:
+ *    - Appearing on Each page:
+ *        - HomeIcon - links to homepage
+ *        - "Project Freelance" Link - links to homepage
+ *
+ *    - Checks if user/tradesmen is logged in:
+ *        - If logged in:
+ *            - If userType is "user"
+ *                - "Create New Project" Button - links to "/newproject"
+ *            - "Dashboard" Button - links to "/user" or "/tradesmen" based on userType
+ *            - IconButton (displays as white circle with blue human body outline) - When clicked displays menu containing:
+ *                - "Profile" MenuItem - links to "/user/profile" or "/tradesmen/profile" based on userType
+ *                - "Logout" MenuItem - links to "/" & dispatches the logout action (clears all state)
+ *
+ *        - If not logged in:
+ *            - "Register" Button - links to "/register"
+ */
+export default function NavBar() {
 	const classes = useStyles();
 
 	const { userType } = useSelector((st) => ({

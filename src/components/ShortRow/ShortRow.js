@@ -2,6 +2,17 @@ import React from "react";
 import { TableCell } from "@material-ui/core/";
 import dateHelper from "../../helperFunctions/dateHelper";
 
+/** ShortRow Component
+ * @param  {object} project
+ *
+ * Returns cells for (displays project object or default value)
+ *
+ *    - Project Description
+ *    - Project Street Address
+ *    - Project City
+ *    - Project Created At Date
+ *    - Project Status
+ */
 const ShortRow = ({ project }) => {
 	return (
 		<>

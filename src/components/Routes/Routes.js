@@ -13,9 +13,12 @@ import AdvancedProjectDetails from "../AdvancedProjectDetails/AdvancedProjectDet
  *    - HomePage
  *    - User Dashboard
  *    - Tradesmen Dashboard
+ *    - User Profile
+ *    - Tradesmen Profile
  *    - Register
  *    - NewProject
  *    - AdvancedProjectDetails
+ *    - Redirect to homepage if no page was found
  */
 
 function Routes() {

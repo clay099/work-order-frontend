@@ -9,9 +9,8 @@ import Feedback from "../Feedback/Feedback";
 
 /** Overall work-order application:
  *
- * - creates the Navbar and Routes
+ * - creates the Navbar, Routes and Feedback
  */
-
 function App() {
 	return (
 		<div className="App">

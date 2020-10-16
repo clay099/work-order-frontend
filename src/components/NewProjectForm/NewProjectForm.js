@@ -8,6 +8,20 @@ import BasicProjectForm from "../BasicProjectForm/BasicProjectForm";
 import { createNewProjectWithAPI } from "../../actions/projects";
 import useStyles from "./styles";
 
+/** NewProjectForm Component
+ * @param  {string} {token}
+ *
+ * Creates formData (object), handleChange (function) & resetFormData (function) from useFields custom hook
+ *
+ * Creates handleSubmit function to submit the new project data to the API
+ *    - if an error occurs provide user feedback and stay on page
+ *    - if no error occurs push the user to "/user"
+ *
+ * Renders:
+ *    - Title
+ *    - BasicProjectForm Component - contains all relevant fields to submit a new project to the API
+ *    - "Create New Project" Button - allows user to submit the completed form
+ */
 const NewProjectForm = ({ token }) => {
 	const classes = useStyles();
 	let INITIALSTATE = {

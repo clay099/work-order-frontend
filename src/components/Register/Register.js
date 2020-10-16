@@ -17,6 +17,18 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import useStyles from "./styles";
 
+/** Register Component
+ *
+ * Creates a hideUser & showUser function which allows for buttons to be clicked and the form to be changed from create user to create tradesmen.
+ *
+ * Creates handleSubmit function for users to submit their completed form to create a new user or tradesmen and submit to the API. If successful will provide user feedback and redirect to "/users" or "/tradesmen". If unsuccessful will reset form and provide user feedback.
+ *
+ * Renders:
+ *    - Title & Icon
+ *    - Two buttons - to change between user and tradesmen
+ *    - UserDetailsFrom - contains all relevant form details for users to complete and submit to the API
+ *
+ */
 const Register = () => {
 	const classes = useStyles();
 

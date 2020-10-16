@@ -4,6 +4,12 @@ import LoginForm from "../LoginForm/LoginForm";
 import useToggle from "../../hooks/useToggle";
 import useStyles from "./styles";
 
+/** LoginButtons Component
+ *
+ * Displays a Login button for User & Tradesmen
+ *
+ * Each button when clicked loads a corresponding Dialog which renders the LoginForm component so that users/tradesmen can log in
+ */
 const LoginButtons = () => {
 	const {
 		setTrue: handleOpenUser,

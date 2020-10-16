@@ -12,6 +12,18 @@ import {
 } from "@material-ui/core/";
 import useStyles from "./styles";
 
+/** ReviewTable Component
+ * @param  {int} projectId
+ *
+ * Gets projects review from Redux state
+ *
+ * If no review is obtains displays null otherwise renders:
+ *
+ *    - Title
+ *    - TableHeadings Component
+ *    - Table Row - with project review details
+ *
+ */
 const ReviewTable = ({ projectId }) => {
 	const classes = useStyles();
 

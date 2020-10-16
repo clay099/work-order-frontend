@@ -3,6 +3,14 @@ import { TableCell } from "@material-ui/core/";
 import dateHelper from "../../helperFunctions/dateHelper";
 import currencyHelper from "../../helperFunctions/currencyHelper";
 
+/** ShortRow Component
+ * @param  {object} project
+ *
+ * Renders cell for (either data form params object or default text):
+ *    - price
+ *    - completed date
+ *    - project issues
+ */
 const ShortRow = ({ project }) => {
 	return (
 		<>

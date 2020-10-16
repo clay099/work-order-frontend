@@ -5,6 +5,15 @@ import BidTableContents from "../BidTableContents/BidTableContents";
 import { Table, Typography, Paper, TableContainer } from "@material-ui/core/";
 import useStyles from "./styles";
 
+/** BidTable Component
+ * @param  {int} {projectId}
+ *
+ * Gets te Redux state for bids on the project.
+ *
+ * If there is no bids for this project returns null - no table is rendered
+ *
+ * If there is one or more bids displays a table which contains all the current bids on the project and the ability for the user to select a bid
+ */
 const BidTable = ({ projectId }) => {
 	const classes = useStyles();
 	const { bids } = useSelector((st) => ({

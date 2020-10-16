@@ -1,6 +1,22 @@
 import React from "react";
 import { TextField, Grid } from "@material-ui/core";
 
+/** FormAddressItems Component
+ * @param  {object} formData
+ * @param  {function} handleChange
+ * @param  {boolean} disabled
+ *
+ * Renders grid items for:
+ *    - Street Address
+ *    - Zip Code
+ *    - City
+ *    - Country
+ *
+ * Each grid item is a TextField and:
+ *    - can be disabled by the param
+ *    - changed via the handleChange function
+ *    - displays a value via the formData object
+ */
 const FormAddressItems = ({ formData, handleChange, disabled }) => {
 	return (
 		<>

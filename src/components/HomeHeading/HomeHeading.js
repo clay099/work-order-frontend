@@ -3,6 +3,15 @@ import { useSelector } from "react-redux";
 import { Typography } from "@material-ui/core";
 import LoginButtons from "../LoginButtons/LoginButtons";
 
+/** HomeHeading Component
+ *
+ * Gets the user email from Redux State
+ *
+ * Renders:
+ *    - Homepage Heading
+ *    - Homepage secondary text
+ *    - Login Buttons (if email cannot be found in state)
+ */
 const HomeHeading = () => {
 	// email can only be found if logged in
 	const { email } = useSelector((st) => ({ email: st.login.email }));

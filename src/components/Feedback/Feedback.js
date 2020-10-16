@@ -4,6 +4,14 @@ import useToggle from "../../hooks/useToggle";
 import { Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 
+/** Feedback Component
+ *
+ * Component is available on each page.
+ *
+ * Obtains from Redux the relevant state to provide useful feedback to the user
+ *
+ * Returns a Snackbar which appears for 6 seconds or until closed. Each snack bar contains a message and "severity" (effects the color and icon displayed)
+ */
 const Feedback = () => {
 	let { message, severity } = useSelector((st) => {
 		if (st.feedback.error) {

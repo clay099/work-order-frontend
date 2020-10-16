@@ -6,6 +6,19 @@ import RemainderRow from "../RemainderRow/RemainderRow";
 import ReviewProjectIcon from "../ReviewProjectIcon/ReviewProjectIcon";
 import Bid from "../Bid/Bid";
 
+/** TableContents Component
+ * @param  {array} bodyData
+ * @param  {string} tableType
+ *
+ * Renders:
+ *    - Table row for each index in the bodyData arry. Each row contains:
+ *        - ShortRow Component
+ *        if tableType is "full":
+ *            - RemainderRow Component
+ *            - ReviewProjectIcon Component
+ *        if tableType is "auction":
+ *            - Bid Component
+ */
 const TableContents = ({ bodyData, tableType }) => {
 	const history = useHistory();
 	const advancedProjectDetails = (id) => {

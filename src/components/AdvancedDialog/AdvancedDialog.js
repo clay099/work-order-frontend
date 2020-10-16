@@ -7,6 +7,23 @@ import {
 	DialogContent,
 } from "@material-ui/core/";
 
+/** AdvancedDialog Component
+ * @param  {function} handleClose - closes Dialog
+ * @param  {boolean} open
+ * @param  {function} handleSubmit - submit form logic
+ * @param  {string} titleText
+ * @param  {int} id
+ * @param  {string} buttonText
+ * @param  {string} buttonColor
+ * @param  {object} FormData - array of jsx form fields (textField, slider etc) to be placed in dialog
+ * @param  {string} maxWidth - changes size of dialog -  default sm
+ *
+ * Returns a Dialog object which contains:
+ *  - DialogTitle,
+ *  - DialogContent (taken from FormData and often used for form contents but might also be text fields)
+ *  - Cancel Button
+ *  - Submit Button
+ */
 const AdvancedDialog = ({
 	handleClose,
 	open,

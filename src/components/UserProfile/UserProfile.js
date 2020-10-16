@@ -13,6 +13,32 @@ import { updateTradesmenWithAPI } from "../../actions/tradesmen";
 import useCheckPassword from "../../hooks/useCheckPassword";
 import useStyles from "./styles";
 
+/** UserProfile Component
+ *
+ * Gets token, userType, id, userDetails from Redux State
+ *
+ * Sends a request to the API to get the user details
+ *
+ * Creates formData, handleChange from useFields customHook and initializes it with the user data returned from the API
+ *
+ * Creates handleSubmit function which checks:
+ *    1. users current password matches the API
+ *        - if true continue
+ *        - if false stop action & provide feedback
+ *
+ *    2. if form has a newPassword field completed check that the newPassword and confirmNewPassword fields match
+ *        - if true make password field to be provided to API equal newPassword
+ *        - if false leave password field to be provided to API equal currentPassword
+ *
+ *    3. Submit form data to API for tradesmen or user API route. (note: redux reducers will provide success or failure feedback via Feedback Component)
+ *
+ *    4. Disable form
+ *
+ * Renders:
+ *    - if user is not logged in redirects to homepage
+ *    - Page Heading
+ *    - UserDetailsForm Component
+ */
 const UserProfile = () => {
 	const { token, userType, id, userDetails } = useSelector(
 		(st) => ({

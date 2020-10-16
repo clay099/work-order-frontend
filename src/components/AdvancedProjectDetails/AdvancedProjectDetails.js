@@ -8,7 +8,27 @@ import UserProjectButtons from "../UserProjectButtons/UserProjectButtons";
 import BidTable from "../BidTable/BidTable";
 import ReviewTable from "../ReviewTable/ReviewTable";
 import useStyles from "./styles";
+import Loading from "../Loading/Loading";
 
+/** AdvancedProjectDetails Component
+ *
+ * Gets the Redux state for token, userType and project
+ *
+ * Sends a request to the API to get latest project details
+ *
+ * If user is not logged in. Redirects to homepage
+ *
+ * Displays a loading page while API request occurs
+ *
+ * When logged in and loading has finished displays:
+ *    - Project Details table will all of the project details
+ *    - If the project is completed displays a project review table
+ *    - If the user is logged in:
+ *        - AND project is in Auction stage:
+ *            - Displays bid table for the user to accept tradesmen bids
+ *        - Displays buttons with different actions based on the project stage. See UserProjectButtons for more details
+ *
+ */
 const AdvancedProjectDetails = () => {
 	const classes = useStyles();
 	const { id } = useParams();
@@ -46,7 +66,7 @@ const AdvancedProjectDetails = () => {
 		return <Redirect to="/" />;
 	}
 
-	if (isLoading) return <b>Loading</b>;
+	if (isLoading) return <Loading />;
 
 	const headingList = [
 		"Description",

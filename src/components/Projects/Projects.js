@@ -10,6 +10,25 @@ import { Typography } from "@material-ui/core";
 import Loading from "../Loading/Loading";
 import NewProjectButton from "../NewProjectButton/NewProjectButton";
 
+/** Projects Component
+ * @param  {string} {userType}
+ *
+ * Gets Projects and Token from Redux State
+ *
+ * Sends a request to the API to get the latest project list and bids
+ *
+ * When the Project list is returned also sends a request to the API to get the review for each project
+ *
+ *
+ * Displays a loading page while API request occurs
+ *
+ * When loading has finished & user is logged in but no projects are associated with the user returns:
+ *    - feedback for user to add project
+ *
+ * When loading has finished displays:
+ *    - DisplayTable Component - containing all projects associated with the user
+ *    - If user is logged in displays NewProjectButton Component so user can add a new project
+ */
 const Projects = ({ userType }) => {
 	const { projects, token } = useSelector(
 		(st) => ({

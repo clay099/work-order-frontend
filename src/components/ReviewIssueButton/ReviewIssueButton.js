@@ -8,6 +8,19 @@ import { submitIssueWithAPI } from "../../actions/projects";
 import { useDispatch } from "react-redux";
 import useStyles from "./styles";
 
+/** ReviewIssueButton Component
+ * @param  {int} id
+ *
+ * Gets token from Redux state
+ *
+ * Creates formData, handleChange, resetFormData from useFields custom hook to allow for form inputs and changes
+ *
+ * Creates a handleSubmit function to submit a completed issues form
+ *
+ * Renders:
+ *    - Button - when clicked opens a Dialog with issues form
+ *    - AdvancedDialog Component - displays issues form along with the function to submit the form
+ */
 const ReviewIssueButton = ({ id }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();

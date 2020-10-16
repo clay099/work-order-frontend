@@ -11,6 +11,26 @@ import {
 import { useDispatch } from "react-redux";
 import useStyles from "./styles";
 
+/** ReviewProjectButtons Component
+ * @param  {int} id
+ * @param  {boolean} reviewed
+ *
+ * Gets token form Redux State
+ *
+ * Creates formData, handleChange, resetFormData, setFormData from useFields custom hook
+ *
+ * Creates FormData with filds to submit for a proejct review. Fields include:
+ *    - "Review" - TextField
+ *    - "Review Rating" - Slider
+ *
+ * Creates custom handleSliderChange function as slider does not work with the standard handleChange function.
+ *
+ * Creates handleSubmit function which submits the form data to the API as a new review or an updated review.
+ *
+ * Renders:
+ *    - Button - when clicked opens a dialog with review project form
+ *    - AdvancedDialog Component - displays form data and ability for user to submit to API
+ */
 const ReviewProjectButtons = ({ id, reviewed }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
@@ -30,6 +50,7 @@ const ReviewProjectButtons = ({ id, reviewed }) => {
 		reviewRating: "",
 	});
 
+	// custom handleChange function for slider. Slider does not process the standard handleChange function correctly
 	const handleSliderChange = (event, newValue) => {
 		setFormData((formData) => ({
 			...formData,
@@ -127,7 +148,6 @@ const ReviewProjectButtons = ({ id, reviewed }) => {
 				buttonText="Submit Review"
 				buttonColor="primary"
 				FormData={FormData}
-				handleChange={handleChange}
 				maxWidth="md"
 			/>
 		</>

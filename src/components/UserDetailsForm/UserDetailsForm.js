@@ -3,6 +3,32 @@ import { Button, TextField, Grid } from "@material-ui/core";
 import FormAddressItems from "../FormAddressItems/FormAddressItems";
 import useStyles from "./styles";
 
+/** UserDetailsForm Component
+ * @param  {string} userType
+ * @param  {function} handleSubmit
+ * @param  {object} formData
+ * @param  {function} handleChange
+ * @param  {boolean} disabled default false
+ * @param  {function} disabledEmail default false
+ * @param  {string} buttonText
+ * @param  {JSX Component} editButton = null
+ *
+ * Renders form with the following TextFields:
+ *    - First Name
+ *    - Last Name
+ *    - Email
+ *    - Phone
+ *    - if usertype === "user":
+ *        - FormAddressItems Component
+ *    - Password
+ *    - if disabledEmail is true: - disabledEmail is only true if user is editing/updating their profile
+ *        - New Password
+ *        - Confirm New Password
+ *
+ * Renders buttons:
+ *    - Submit - submits form
+ *    - Edit Button - changes disabled to be false - only renders if edit button is not null AND "disabled" is true
+ */
 export default function UserDetailsForm({
 	userType,
 	handleSubmit,

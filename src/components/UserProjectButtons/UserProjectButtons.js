@@ -12,6 +12,26 @@ import ReviewProjectButtons from "../ReviewProjectButtons/ReviewProjectButtons";
 import ReviewIssueButton from "../ReviewIssueButton/ReviewIssueButton";
 import useStyles from "./styles";
 
+/** UserProjectButtons Component
+ * @param  {string} status
+ * @param  {int} id
+ * @param  {string} token
+ *
+ * Gets project Reviews from Redux State
+ *
+ * Creates handleDelete function which deletes a project from the API
+ *
+ * Creates handleMarkAsComplete which updates the project to be completed in the API from todays date
+ *
+ * Renders:
+ *    - If status is "auction"
+ *        - Button to delete project - when clicked will pop up a dialog to confirm you wish to proceed
+ *    - If status is "progressing"
+ *        - Button to Mark Project as complete - when clicked will pop up a dialog to confirm you wish to proceed
+ *    - If status is "completed"
+ *        - ReviewIssuesButton Component - allows for user to add / update issues to the project
+ *        - ReviewProjectButtons Component - allows for user to add / update a project review - checks is project has previously been reviewed and changes the component params accordingly
+ */
 const UserProjectButtons = ({ status, id, token }) => {
 	const classes = useStyles();
 	const { review } = useSelector((st) => ({ review: st.reviews[id] }));
