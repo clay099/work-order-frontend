@@ -8,9 +8,6 @@ import {
 	userDetailsState,
 } from "../../testHelper/testHelper";
 console.error = jest.fn();
-jest.mock("axios");
-const isLoading 
-
 
 describe("UserProfile Component", () => {
 	// smoke test
@@ -36,19 +33,5 @@ describe("UserProfile Component", () => {
 			},
 		});
 		expect(asFragment).toMatchSnapshot();
-	});
-
-	test("should have relevant buttons when first load", () => {
-		const { getByText } = render(<UserProfile />, {
-			initialState: {
-				tokenState,
-				userTypeUserState,
-				idState,
-				userDetailsState,
-			},
-		});
-
-		const button = getByText("Edit User Profile?");
-		expect(button).toBeInTheDocument();
 	});
 });

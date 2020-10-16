@@ -25,6 +25,22 @@ const userTypeUserState = { userType: "user" };
 const userTypeTradesmenState = { userType: "user" };
 const idState = { id: 1234 };
 const userDetailsState = { userDetails: "userDetails" };
+const handleSubmitState = { handleSubmit: jest.fn() };
+const handleChangeState = { handleChange: jest.fn() };
+const disabledState = { disabled: false };
+const disabledEmailState = { disabledEmail: false };
+const buttonTextState = { buttonText: "buttonText" };
+const formDataState = {
+	formData: {
+		id: 1,
+		firstName: "firstName",
+		lastName: "lastName",
+		email: "email",
+		password: "password",
+		newPassword: "newPassword",
+		confirmNewPassword: "confirmNewPassword",
+	},
+};
 
 // re-export everything
 export * from "@testing-library/react";
@@ -36,4 +52,10 @@ export {
 	userTypeTradesmenState,
 	idState,
 	userDetailsState,
+	handleSubmitState,
+	handleChangeState,
+	disabledState,
+	disabledEmailState,
+	buttonTextState,
+	formDataState,
 };
