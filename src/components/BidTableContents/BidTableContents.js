@@ -1,5 +1,11 @@
 import React from "react";
-import { TableBody, TableRow, TableCell, Button } from "@material-ui/core/";
+import {
+	TableBody,
+	TableRow,
+	TableCell,
+	Button,
+	Tooltip,
+} from "@material-ui/core/";
 import { Send } from "@material-ui/icons/";
 import { acceptBidWithAPI } from "../../actions/bids";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,35 +50,44 @@ const BidTableContents = ({ bidData, projectId }) => {
 		<TableBody>
 			{Object.keys(bidData).map((tradesmenId) => {
 				return (
-					<TableRow
-						key={tradesmenId}
-						onClick={() =>
-							history.push(`/tradesmen/${tradesmenId}`)
-						}
+					<Tooltip
+						title="Click table row for further tradesmen details"
+						arrow
 					>
-						<TableCell>{bidData[tradesmenId].first_name}</TableCell>
-						<TableCell>{bidData[tradesmenId].last_name}</TableCell>
-						<TableCell>
-							{currencyHelper(bidData[tradesmenId].bid)}
-						</TableCell>
-						<TableCell>
-							<Button
-								type="submit"
-								size="small"
-								variant="outlined"
-								color="primary"
-								endIcon={<Send />}
-								onClick={() =>
-									handleSubmit({
-										tradesmenId,
-										price: bidData[tradesmenId].bid,
-									})
-								}
-							>
-								Accept Bid
-							</Button>
-						</TableCell>
-					</TableRow>
+						<TableRow
+							key={tradesmenId}
+							onClick={() =>
+								history.push(`/tradesmen/${tradesmenId}`)
+							}
+						>
+							<TableCell>
+								{bidData[tradesmenId].first_name}
+							</TableCell>
+							<TableCell>
+								{bidData[tradesmenId].last_name}
+							</TableCell>
+							<TableCell>
+								{currencyHelper(bidData[tradesmenId].bid)}
+							</TableCell>
+							<TableCell>
+								<Button
+									type="submit"
+									size="small"
+									variant="outlined"
+									color="primary"
+									endIcon={<Send />}
+									onClick={() =>
+										handleSubmit({
+											tradesmenId,
+											price: bidData[tradesmenId].bid,
+										})
+									}
+								>
+									Accept Bid
+								</Button>
+							</TableCell>
+						</TableRow>
+					</Tooltip>
 				);
 			})}
 		</TableBody>
