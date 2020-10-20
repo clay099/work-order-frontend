@@ -5,10 +5,8 @@ import {
 	ListItem,
 	ListItemText,
 	List,
-	ListItemIcon,
 } from "@material-ui/core";
 import CustomListItem from "../CustomListItem/CustomListItem";
-import AddIcon from "@material-ui/icons/Add";
 import useStyles from "./styles";
 
 /** About Project Component

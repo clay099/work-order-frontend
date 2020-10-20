@@ -58,7 +58,7 @@ const AdvancedProjectDetails = () => {
 				getProjects();
 			}
 		},
-		[dispatch, isLoading, token]
+		[dispatch, isLoading, token, id]
 	);
 
 	// if user is not logged in token will evaluate to false and you will be redirected to the home page.

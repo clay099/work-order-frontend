@@ -57,6 +57,7 @@ const Projects = ({ userType }) => {
 								projectId: project.id,
 							})
 						);
+						return project;
 					})
 				);
 

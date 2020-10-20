@@ -75,6 +75,8 @@ const UserProfile = () => {
 		INITIALSTATE.country = "";
 	}
 
+	const { formData, handleChange } = useFields(INITIALSTATE);
+
 	useEffect(
 		function () {
 			async function getProfile() {
@@ -106,12 +108,24 @@ const UserProfile = () => {
 				}
 			}
 		},
-		[dispatch, isLoading, token, id]
+		[
+			dispatch,
+			isLoading,
+			token,
+			id,
+			userType,
+			formData.firstName,
+			formData.lastName,
+			formData.email,
+			formData.phone,
+			formData.streetAddress,
+			formData.zip,
+			formData.city,
+			formData.country,
+		]
 	);
 
 	const classes = useStyles();
-
-	const { formData, handleChange } = useFields(INITIALSTATE);
 
 	// checkPassword Data and functions
 	const { handleSubmit: handleCheckPasswordSubmit } = useCheckPassword({

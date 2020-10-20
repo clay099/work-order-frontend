@@ -60,7 +60,7 @@ const Feedback = () => {
 		if (message) {
 			handleOpenToggle();
 		}
-	}, [message]);
+	}, [message]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	return !message ? null : (
 		<div>

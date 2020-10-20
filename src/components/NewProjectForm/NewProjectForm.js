@@ -2,7 +2,6 @@ import React from "react";
 import useFields from "../../hooks/useFields";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 import { Button, Container, CssBaseline, Typography } from "@material-ui/core";
 import BasicProjectForm from "../BasicProjectForm/BasicProjectForm";
 import { createNewProjectWithAPI } from "../../actions/projects";
