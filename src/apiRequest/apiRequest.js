@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
 /**
- * Class to allow for api requests to be in structured Axio format
+ * Class to allow for api requests to be in structured Axios format
  */
 class apiRequest {
 	/**Format Axios request
