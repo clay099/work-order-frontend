@@ -159,6 +159,10 @@ export function getAuctionProjectsFromAPI({ token }) {
 			},
 			"get"
 		);
+    // if no resp.projects an error occurred
+		if (!resp.projects) {
+			return dispatch(projectError(resp.data.error.message));
+		}
 		return dispatch(getAuctionProjects(resp.projects));
 	};
 }

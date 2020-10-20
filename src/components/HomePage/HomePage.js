@@ -2,6 +2,7 @@ import React from "react";
 import HomeHeading from "../HomeHeading/HomeHeading";
 import AboutProject from "../AboutProject/AboutProject";
 import useStyles from "./styles";
+import { Container, Paper } from "@material-ui/core";
 
 /** HomePage Component
  *
@@ -16,8 +17,10 @@ const HomePage = () => {
 
 	return (
 		<div className={classes.homeContent}>
-			<HomeHeading />
-			<AboutProject />
+			<Container maxWidth="md" component={Paper}>
+				<HomeHeading />
+				<AboutProject />
+			</Container>
 		</div>
 	);
 };
