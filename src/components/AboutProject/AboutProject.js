@@ -59,12 +59,12 @@ const AboutProject = () => {
 				The project is a peer-to-peer outsourcing program which matches
 				general users with qualified tradesmen to complete real-world
 				jobs. At a high level there will be two types of users who will
-				utilize this project. General Users & Tradesmen
+				utilize this project: General Users & Tradesmen.
 			</Typography>
 			<Typography variant="body1" paragraph>
 				General Users will be anyone who needs to have a job completed
 				which they need assistance completing. This can be anything from
-				mowing their lawn, painting their house to a Bathroom
+				mowing their lawn, painting their house to a bathroom
 				renovation.
 			</Typography>
 			<Typography variant="body1" paragraph>
@@ -83,7 +83,7 @@ const AboutProject = () => {
 			</Typography>
 
 			<Typography variant="body1" paragraph>
-				The user experience is broken up into two parts. One for the
+				The user experience is broken up into two parts: one for the
 				general users and one for tradesmen. To gain the best
 				understanding of the functionality as some processes can only be
 				completed by general users or tradesmen, it is suggested that
@@ -110,7 +110,7 @@ const AboutProject = () => {
 							by tradesmen"
 					/>
 					<CustomListItem listText="Cancel / Delete a project" />
-					<CustomListItem listText="Mark a Project as Complete" />
+					<CustomListItem listText="Mark a project as complete" />
 					<CustomListItem listText="Provide tradesmen feedback & node project issues" />
 				</List>
 			</Typography>
