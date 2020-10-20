@@ -1,5 +1,5 @@
 import React from "react";
-import { TableBody, TableRow } from "@material-ui/core/";
+import { TableBody, TableRow, Tooltip } from "@material-ui/core/";
 import { useHistory } from "react-router-dom";
 import ShortRow from "../ShortRow/ShortRow";
 import RemainderRow from "../RemainderRow/RemainderRow";
@@ -30,21 +30,23 @@ const TableContents = ({ bodyData, tableType }) => {
 	return (
 		<TableBody>
 			{bodyData.map((project) => (
-				<TableRow
-					key={project.id}
-					onClick={() => advancedProjectDetails(project.id)}
-				>
-					<ShortRow project={project} />
-					{tableType === "full" ? (
-						<>
-							<RemainderRow project={project} />
-							<ReviewProjectIcon id={project.id} />
-						</>
-					) : null}
-					{tableType === "auction" ? (
-						<Bid projectId={project.id} />
-					) : null}
-				</TableRow>
+				<Tooltip title="click for more details" arrow>
+					<TableRow
+						key={project.id}
+						onClick={() => advancedProjectDetails(project.id)}
+					>
+						<ShortRow project={project} />
+						{tableType === "full" ? (
+							<>
+								<RemainderRow project={project} />
+								<ReviewProjectIcon id={project.id} />
+							</>
+						) : null}
+						{tableType === "auction" ? (
+							<Bid projectId={project.id} />
+						) : null}
+					</TableRow>
+				</Tooltip>
 			))}
 		</TableBody>
 	);
