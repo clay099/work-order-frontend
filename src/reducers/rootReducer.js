@@ -5,6 +5,7 @@ import feedback from "./feedback";
 import user from "./user";
 import bids from "./bids";
 import reviews from "./reviews";
+import tradesmen from "./tradesmen";
 
 /**
  * rootReducer combines all reducers
@@ -16,4 +17,5 @@ export default combineReducers({
 	user,
 	bids,
 	reviews,
+	tradesmen,
 });

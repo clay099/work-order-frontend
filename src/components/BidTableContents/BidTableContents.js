@@ -44,7 +44,12 @@ const BidTableContents = ({ bidData, projectId }) => {
 		<TableBody>
 			{Object.keys(bidData).map((tradesmenId) => {
 				return (
-					<TableRow key={bidData[tradesmenId]}>
+					<TableRow
+						key={tradesmenId}
+						onClick={() =>
+							history.push(`/tradesmen/${tradesmenId}`)
+						}
+					>
 						<TableCell>{bidData[tradesmenId].first_name}</TableCell>
 						<TableCell>{bidData[tradesmenId].last_name}</TableCell>
 						<TableCell>

@@ -6,6 +6,7 @@ import UserProfile from "../UserProfile/UserProfile";
 import Register from "../Register/Register";
 import NewProject from "../NewProject/NewProject";
 import AdvancedProjectDetails from "../AdvancedProjectDetails/AdvancedProjectDetails";
+import TradesmenDetails from "../TradesmenDetails/TradesmenDetails";
 
 /** Application Routes
  *
@@ -18,6 +19,7 @@ import AdvancedProjectDetails from "../AdvancedProjectDetails/AdvancedProjectDet
  *    - Register
  *    - NewProject
  *    - AdvancedProjectDetails
+ *    - TradesmenDetails
  *    - Redirect to homepage if no page was found
  */
 
@@ -47,6 +49,9 @@ function Routes() {
 			</Route>
 			<Route exact path="/project/:id">
 				<AdvancedProjectDetails />
+			</Route>
+			<Route exact path="/tradesmen/:id">
+				<TradesmenDetails />
 			</Route>
 			<Redirect to="/" />
 		</Switch>

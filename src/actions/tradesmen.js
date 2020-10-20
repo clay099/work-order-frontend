@@ -1,4 +1,10 @@
-import { LOGIN, ERROR, USER_DETAILS, UPDATE_PROFILE } from "./types";
+import {
+	LOGIN,
+	ERROR,
+	USER_DETAILS,
+	UPDATE_PROFILE,
+	TRADESMEN_DETAILS,
+} from "./types";
 import apiRequest from "../apiRequest/apiRequest";
 
 /**Action Creator
@@ -121,15 +127,14 @@ export function getTradesmenProfileFromAPI({ token, id }) {
 		if (!resp.tradesman) {
 			return dispatch(error(resp.data.error.message));
 		}
-		return dispatch(tradesmenDetails(resp.tradesman));
+		return dispatch(tradesmenProfile(resp.tradesman));
 	};
 }
 
 /** tradesmen details action
  * @param {object} details - tradesmen details
- *
  */
-function tradesmenDetails(details) {
+function tradesmenProfile(details) {
 	return {
 		type: USER_DETAILS,
 		details,
@@ -235,5 +240,40 @@ export function checkTradesmenPasswordWithAPI({ email, password }) {
 function checkPassword() {
 	return {
 		type: "PASSED",
+	};
+}
+
+/**Action Creator
+ * @param  {string} email
+ * @param  {string} password
+ *
+ * Send request to API to login tradesmen
+ *
+ * Returns tradesmen object or error message
+ */
+export function getTradesmenDetailsFromAPI({ token, tradesmenId }) {
+	return async function (dispatch) {
+		const resp = await apiRequest.request(
+			`tradesmen/${tradesmenId}`,
+			{
+				token,
+			},
+			"get"
+		);
+		// tradesmen not found in DB
+		if (!resp.tradesman) {
+			return dispatch(error(resp.data.error.message));
+		}
+		return dispatch(tradesmenDetails(resp.tradesman));
+	};
+}
+
+/** tradesmenDetails action
+ * @param {object} details - tradesmen details
+ */
+function tradesmenDetails(details) {
+	return {
+		type: TRADESMEN_DETAILS,
+		details,
 	};
 }
