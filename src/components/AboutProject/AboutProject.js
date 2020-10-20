@@ -157,8 +157,8 @@ const AboutProject = () => {
 			<Typography variant="body1" paragraph>
 				As this project is designed to be a peer-to-peer platform there
 				is no external third party database to connect to. As outlined
-				above a separate back-end API has been designed for this
-				project.
+				above a separate back-end API has been designed for this project
+				and the front-end connects to this back-end API.
 			</Typography>
 			<Typography variant="body1" paragraph>
 				The project is seeded with limited general users & tradesmen
@@ -246,6 +246,21 @@ const AboutProject = () => {
 					listText="Fake project completion - avoid tradesmen creating users
 						and acting as if they have completed projects"
 				/>
+			</List>
+
+			{/* Stretch Goals */}
+			<Typography
+				component="h5"
+				variant="h5"
+				color="textPrimary"
+				gutterBottom
+			>
+				Project Stretch Goals:
+			</Typography>
+			<List dense={true}>
+				<CustomListItem listText="Add further user interface functionality to allow for a seamless user experience. e.g. (further from validation, tooltips, add user/ tradesmen photos)" />
+				<CustomListItem listText="Add ability to add project before & after photos (back-end API set up)" />
+				<CustomListItem listText="Add instance chat function between end user and tradesmen (back-end API set up)" />
 			</List>
 		</div>
 	);

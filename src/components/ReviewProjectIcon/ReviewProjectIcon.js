@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { TableCell } from "@material-ui/core/";
+import { TableCell, Tooltip } from "@material-ui/core/";
 import { NewReleases } from "@material-ui/icons";
 
 /** ReviewProjectIcon Component
@@ -26,13 +26,19 @@ const ReviewProjectIcon = ({ id }) => {
 		userType: st.login.user_type,
 		review: st.reviews[id],
 	}));
+	let TooltipMessage =
+		project.status === "auction"
+			? "Please Review Bids"
+			: "Please Add A Project Review";
 	return (
 		<div>
 			{userType === "user" ? (
 				(project.status === "auction" && bid) ||
 				(project.status === "completed" && !review) ? (
 					<TableCell>
-						<NewReleases></NewReleases>
+						<Tooltip title={TooltipMessage} arrow>
+							<NewReleases />
+						</Tooltip>
 					</TableCell>
 				) : null
 			) : null}
