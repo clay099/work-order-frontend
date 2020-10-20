@@ -12,7 +12,6 @@ import useStyles from "./styles";
 /** About Project Component
  *
  * - provides users details with project goals, methods and outcomes
- *
  */
 const AboutProject = () => {
 	const classes = useStyles();
