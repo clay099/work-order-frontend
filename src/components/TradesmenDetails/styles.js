@@ -1,8 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { table } from "../../styles/styleObjects";
+import { table, paper } from "../../styles/styleObjects";
 
 const useStyles = makeStyles((theme) => {
-	return table(theme);
+	let tableObj = table(theme);
+	let paperObj = paper(theme);
+	return { ...tableObj, ...paperObj };
 });
 
 export default useStyles;

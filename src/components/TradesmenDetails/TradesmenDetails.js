@@ -138,6 +138,7 @@ const TradesmenDetails = () => {
 					variant="h6"
 					color="primary"
 					gutterBottom
+					className={classes.paper}
 				>
 					{`${details.first_name} ${details.last_name} does not have any project reviews`}
 				</Typography>
