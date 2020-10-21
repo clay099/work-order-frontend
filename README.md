@@ -8,6 +8,20 @@ General Users will be anyone who needs to have a job completed which they need a
 
 Tradesmen will be people who are able to provide their expertise to help their parties complete their projects.
 
+## Project Demo
+
+### User Sign Up & Create New Project
+
+![User Sign Up & Create New Project](demo\SignUp&NewProject.gif)
+
+### Tradesmen Sign In & Project Bid
+
+![Tradesmen Sign In & Project Bid](demo\TradesmenProcess.gif)
+
+### User Accept Bid, Mark As Complete & Provide Project Review
+
+![User Accept Bid, Mark As Complete & Provide Project Review](demo\UserProjectProcess.gif)
+
 ## Project Functionality
 
 The user experience is broken up into two parts. One for the general users and one for tradesmen. To gain the best understanding of the functionality as some processes can only be completed by general users or tradesmen, it is suggested that you many need to log out as a user and login as a tradesmen multiple times.
