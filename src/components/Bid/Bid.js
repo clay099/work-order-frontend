@@ -28,7 +28,7 @@ const Bid = ({ projectId }) => {
 	const { token, bid } = useSelector((st) => {
 		let bid;
 		// to avoid typeError checks if the projectId does not have a bid attached
-		if (!st.bids[projectId]) {
+		if (!st.bids[projectId] || !st.bids[projectId][st.login.id]) {
 			// returns undefined if no bid for projectId
 			bid = undefined;
 		} else {
