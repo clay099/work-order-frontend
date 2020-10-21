@@ -31,7 +31,8 @@ class apiRequest {
 			// and request body data via the "data" key,
 			// so the key we need depends on the HTTP verb
 		} catch (err) {
-			console.error("API Error:", err.response);
+			// uncomment below line if looking for errors
+			// console.error("API Error:", err.response);
 			return err.response;
 		}
 	}
