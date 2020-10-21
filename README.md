@@ -12,11 +12,11 @@ Tradesmen will be people who are able to provide their expertise to help their p
 
 ### User Sign Up & Create New Project
 
-![User Sign Up & Create New Project](demo\SignUp&NewProject.gif)
+![User Sign Up & Create New Project](\demo\SignUp&NewProject.gif)
 
 ### Tradesmen Sign In & Project Bid
 
-![Tradesmen Sign In & Project Bid](demo\TradesmenProcess.gif)
+![Tradesmen Sign In & Project Bid](\demo\TradesmenProcess.gif)
 
 ### User Accept Bid, Mark As Complete & Provide Project Review
 
