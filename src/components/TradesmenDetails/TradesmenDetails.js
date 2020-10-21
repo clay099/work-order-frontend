@@ -70,14 +70,7 @@ const TradesmenDetails = () => {
 
 	if (isLoading) return <Loading />;
 
-	const headingList = [
-		"ID",
-		"First Name",
-		"Last Name",
-		"Email",
-		"Phone",
-		"Rating",
-	];
+	const headingList = ["First Name", "Last Name", "Email", "Phone", "Rating"];
 
 	return (
 		<>
@@ -94,7 +87,6 @@ const TradesmenDetails = () => {
 					<TableHeadings headings={headingList} />
 					<TableBody>
 						<TableRow>
-							<TableCell>{details.id}</TableCell>
 							<TableCell>{details.first_name}</TableCell>
 							<TableCell>{details.last_name}</TableCell>
 							<TableCell>{details.email}</TableCell>
