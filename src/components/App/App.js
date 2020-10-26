@@ -6,6 +6,7 @@ import { Container } from "@material-ui/core";
 import Routes from "../Routes/Routes";
 import NavBar from "../NavBar/NavBar";
 import Feedback from "../Feedback/Feedback";
+import HelmetTags from "../HelmetTags/HelmetTags";
 
 /** Overall work-order application:
  *
@@ -14,6 +15,7 @@ import Feedback from "../Feedback/Feedback";
 function App() {
 	return (
 		<div className="App">
+			<HelmetTags />
 			<BrowserRouter>
 				<NavBar />
 				<Container>
