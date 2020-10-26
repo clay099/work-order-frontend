@@ -15,7 +15,6 @@ import HelmetTags from "../HelmetTags/HelmetTags";
 function App() {
 	return (
 		<div className="App">
-			<HelmetTags />
 			<BrowserRouter>
 				<NavBar />
 				<Container>
