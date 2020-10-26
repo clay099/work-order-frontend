@@ -17,7 +17,10 @@ const HelmetTags = () => {
 				itemprop="description"
 				content="Peer-To-Peer Outsourcing Project"
 			/>
-			<meta itemprop="image" content="" />
+			<meta
+				itemprop="image"
+				content={process.env.PUBLIC_URL + "renovation.jpg"}
+			/>
 
 			{/* <!-- Facebook Meta Tags -- /> */}
 			<meta
@@ -30,7 +33,10 @@ const HelmetTags = () => {
 				property="og:description"
 				content="Peer-To-Peer Outsourcing Project"
 			/>
-			<meta property="og:image" content="" />
+			<meta
+				property="og:image"
+				content={process.env.PUBLIC_URL + "renovation.jpg"}
+			/>
 
 			{/* <!-- Twitter Meta Tags -- /> */}
 			<meta name="twitter:card" content="summary_large_image" />
@@ -39,7 +45,10 @@ const HelmetTags = () => {
 				name="twitter:description"
 				content="Peer-To-Peer Outsourcing Project"
 			/>
-			<meta name="twitter:image" content="" />
+			<meta
+				name="twitter:image"
+				content={process.env.PUBLIC_URL + "renovation.jpg"}
+			/>
 		</Helmet>
 	);
 };
