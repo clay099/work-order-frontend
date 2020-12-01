@@ -63,6 +63,33 @@ const LoginForm = ({ userType, handleClose }) => {
 		history.push(`/${resp.user_type}`);
 	};
 
+	const handleTestSubmit = async (e) => {
+		e.preventDefault();
+		let resp;
+		if (userType === "User") {
+			resp = await dispatch(
+				loginUserWithAPI({
+					email: "user@gmail.com",
+					password: "password",
+				})
+			);
+		} else {
+			resp = await dispatch(
+				loginTradesmenWithAPI({
+					email: "tradesmen@gmail.com",
+					password: "password",
+				})
+			);
+		}
+		resetFormData();
+		handleClose();
+		if (resp.type === "LOGIN_ERROR") {
+			// user could not be found. return don't redirect, snackbar should provide user feedback
+			return;
+		}
+		history.push(`/${resp.user_type}`);
+	};
+
 	return (
 		<div className="LoginForm">
 			<DialogTitle id={`login-form-${userType}`}>
@@ -91,6 +118,13 @@ const LoginForm = ({ userType, handleClose }) => {
 					></TextField>
 				</DialogContent>
 				<DialogActions>
+					<Button
+						type="submit"
+						onClick={handleTestSubmit}
+						color="secondary"
+					>
+						Login With Test Account
+					</Button>
 					<Button
 						type="submit"
 						onClick={handleSubmit}
