@@ -123,7 +123,7 @@ const LoginForm = ({ userType, handleClose }) => {
 						onClick={handleTestSubmit}
 						color="secondary"
 					>
-						Login With Test Account
+						Login With Demo Account
 					</Button>
 					<Button
 						type="submit"
