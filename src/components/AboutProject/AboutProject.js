@@ -100,49 +100,45 @@ const AboutProject = () => {
 			<Typography variant="h6" color="textPrimary" gutterBottom>
 				User functionality:
 			</Typography>
-			<Typography variant="body1" paragraph>
-				<List dense={true}>
-					<CustomListItem listText="Register a new profile" />
-					<CustomListItem listText="Update their profile information" />
-					<CustomListItem listText="Create a new project to be completed" />
-					<CustomListItem
-						listText="Review and select a winning bid from quotes provided
+			<List dense={true}>
+				<CustomListItem listText="Register a new profile" />
+				<CustomListItem listText="Update their profile information" />
+				<CustomListItem listText="Create a new project to be completed" />
+				<CustomListItem
+					listText="Review and select a winning bid from quotes provided
 							by tradesmen"
-					/>
-					<CustomListItem listText="Cancel / Delete a project" />
-					<CustomListItem listText="Mark a project as complete" />
-					<CustomListItem listText="Provide tradesmen feedback & node project issues" />
-				</List>
-			</Typography>
+				/>
+				<CustomListItem listText="Cancel / Delete a project" />
+				<CustomListItem listText="Mark a project as complete" />
+				<CustomListItem listText="Provide tradesmen feedback & node project issues" />
+			</List>
 
 			<Typography variant="h6" color="textPrimary" gutterBottom>
 				Tradesmen functionality:
 			</Typography>
-			<Typography variant="body1" paragraph>
-				<List dense={true}>
-					<CustomListItem listText="Register a new tradesmen profile" />
+			<List dense={true}>
+				<CustomListItem listText="Register a new tradesmen profile" />
 
-					<CustomListItem listText="Update their profile information" />
+				<CustomListItem listText="Update their profile information" />
 
-					<CustomListItem
-						listText="Review projects which are at an bid stage & provide
+				<CustomListItem
+					listText="Review projects which are at an bid stage & provide
 							a project bid if they choose"
-					/>
+				/>
 
-					<CustomListItem
-						listText="If no bids have been selected tradesmen can update
+				<CustomListItem
+					listText="If no bids have been selected tradesmen can update
 							their project bid (tradesmen are only able to submit
 							one bid per project)"
-					/>
+				/>
 
-					<CustomListItem
-						listText="Review project status and any feedback / reviews the
+				<CustomListItem
+					listText="Review project status and any feedback / reviews the
 							general user has provided"
-					/>
+				/>
 
-					<CustomListItem listText="Review all projects they are associated with" />
-				</List>
-			</Typography>
+				<CustomListItem listText="Review all projects they are associated with" />
+			</List>
 
 			{/* The Data Section */}
 			<Typography
