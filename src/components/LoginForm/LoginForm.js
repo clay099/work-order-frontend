@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useFields from "../../hooks/useFields";
 import {
 	DialogTitle,
@@ -6,6 +6,7 @@ import {
 	TextField,
 	DialogActions,
 	Button,
+	CircularProgress,
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -30,6 +31,8 @@ import { loginTradesmenWithAPI } from "../../actions/tradesmen";
  *    - Submit button
  */
 const LoginForm = ({ userType, handleClose }) => {
+	const [loading, setLoading] = useState(false);
+	const [demoLoading, setDemoLoading] = useState(false);
 	const INITIALSTATE = { email: "", password: "" };
 	const { formData, handleChange, resetFormData } = useFields(INITIALSTATE);
 
@@ -38,6 +41,7 @@ const LoginForm = ({ userType, handleClose }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setLoading(false);
 		let resp;
 		if (userType === "User") {
 			resp = await dispatch(
@@ -54,6 +58,7 @@ const LoginForm = ({ userType, handleClose }) => {
 				})
 			);
 		}
+		setLoading(true);
 		resetFormData();
 		handleClose();
 		if (resp.type === "LOGIN_ERROR") {
@@ -65,6 +70,7 @@ const LoginForm = ({ userType, handleClose }) => {
 
 	const handleTestSubmit = async (e) => {
 		e.preventDefault();
+		setDemoLoading(false);
 		let resp;
 		if (userType === "User") {
 			resp = await dispatch(
@@ -81,6 +87,7 @@ const LoginForm = ({ userType, handleClose }) => {
 				})
 			);
 		}
+		setDemoLoading(true);
 		resetFormData();
 		handleClose();
 		if (resp.type === "LOGIN_ERROR") {
@@ -118,20 +125,28 @@ const LoginForm = ({ userType, handleClose }) => {
 					></TextField>
 				</DialogContent>
 				<DialogActions>
-					<Button
-						type="submit"
-						onClick={handleTestSubmit}
-						color="secondary"
-					>
-						Login With Demo Account
-					</Button>
-					<Button
-						type="submit"
-						onClick={handleSubmit}
-						color="primary"
-					>
-						Login
-					</Button>
+					{demoLoading ? (
+						<CircularProgress />
+					) : (
+						<Button
+							type="submit"
+							onClick={handleTestSubmit}
+							color="secondary"
+						>
+							Login With Demo Account
+						</Button>
+					)}
+					{loading ? (
+						<CircularProgress />
+					) : (
+						<Button
+							type="submit"
+							onClick={handleSubmit}
+							color="primary"
+						>
+							Login
+						</Button>
+					)}
 				</DialogActions>
 			</form>
 		</div>
