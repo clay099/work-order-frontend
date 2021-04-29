@@ -25,6 +25,10 @@ class apiRequest {
 					method: verb,
 					url: `${BASE_URL}/${endpoint}`,
 					[verb === "get" ? "params" : "data"]: paramsOrData,
+					headers: {
+						"Content-Type":
+							verb === "get" ? "text/plain" : "application/json",
+					},
 				})
 			).data;
 			// axios sends query string data via the "params" key,
